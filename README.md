@@ -1,6 +1,10 @@
 # nix-desktop
 
-Nix config for my personal computers.
+Nix config for my personal computers. This is currently designed for a single user configuration.
+
+## Secrets
+
+Secrets are managed with `sops-nix`. Ensure the private key is located at `~/.config/sops/age/keys.txt`.
 
 ## Installation
 
@@ -11,7 +15,7 @@ This configuration can be installed to a remote machine using `nixos-anywhere`.
    ```sh
    sudo passwd
    ```
-3. Install:
+3. Install (and generate a new hardware-configuration.nix):
    ```sh
    nixos-anywhere --generate-hardware-config nixos-generate-config ./hosts/lappy/hardware-configuration.nix --flake '.#lappy' --target-host root@10.0.0.66
    ```
@@ -19,3 +23,13 @@ This configuration can be installed to a remote machine using `nixos-anywhere`.
    ```
    tailscale up --operator=jamie
    ```
+5. A full rebuild is required to ensure all configuration is correctly deployed:
+   ```
+   nixos-rebuild switch --flake '.#lappy' --verbose --use-remote-sudo --target-host jamie@lappy
+   ```
+
+## Applying Configuration
+
+### dconf
+
+Using dconf2nix, you can create a .nix file to reproduce your current dconf settings. Presently, it's preferred to add specific settings to users/modules/dconf.nix.

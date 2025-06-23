@@ -15,14 +15,19 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    sops-nix.url = "github:Mic92/sops-nix";
+
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, nix-flatpak, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, disko, nix-flatpak, nixos-hardware, ... }@inputs: 
     let
       makeHost = hostName: hostId: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-
+        
         specialArgs = {
+          inherit inputs;
           # This needs to be refactored to support multiple hosts.
           diskDevice = "/dev/disk/by-id/nvme-LENSE30256GMSP34MEAT3TA_1304720404575";
         };

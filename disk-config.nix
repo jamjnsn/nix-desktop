@@ -22,65 +22,54 @@
               };
             };
 
-            swap = {
-              size = "4G";
-              content = {
-                type = "swap";
-                randomEncryption = true;
-              };
-            };
-
-            zfs = {
+            luks = {
               size = "100%";
               content = {
-                type = "zfs";
-                pool = "rpool";
+                type = "luks";
+                name = "crypted";
+                # disable settings.keyFile if you want to use interactive password entry
+                # passwordFile = "/tmp/secret.key"; # Interactive
+                settings = {
+                  allowDiscards = true;
+                  # keyFile = "/tmp/secret.key";
+                };
+                # additionalKeyFiles = [ "/tmp/additionalSecret.key" ];
+                content = {
+                  type = "btrfs";
+                  extraArgs = [ "-f" ];
+                  subvolumes = {
+                    "/root" = {
+                      mountpoint = "/";
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
+
+                    "/home" = {
+                      mountpoint = "/home";
+                      mountOptions = [
+                        "compress=zstd"
+                        "relatime"
+                      ];
+                    };
+
+                    "/nix" = {
+                      mountpoint = "/nix";
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
+
+                    "/swap" = {
+                      mountpoint = "/.swap";
+                      swap.swapfile.size = "2G";
+                    };
+                  };
+                };
               };
             };
-          };
-        };
-      };
-    };
-
-    zpool = {
-      rpool = {
-        type = "zpool";
-        
-        rootFsOptions = {
-          atime = "off";
-          mountpoint = "none";
-          compression = "zstd";
-          acltype = "posixacl";
-          xattr = "sa";
-          "com.sun:auto-snapshot" = "true";
-        };
-        
-        options.ashift = "12";
-
-        datasets = {
-          "root" = {
-            type = "zfs_fs";
-
-            options = {
-              encryption = "aes-256-gcm";
-              keyformat = "passphrase";
-              #keylocation = "file:///tmp/secret.key";
-              keylocation = "prompt";
-            };
-
-            mountpoint = "/";
-          };
-
-          "nix" = {
-            type = "zfs_fs";
-            options.mountpoint = "/nix";
-            mountpoint = "/nix";
-          };
-
-          "home" = {
-            type = "zfs_fs";
-            mountpoint = "/home";
-            options.relatime = "on";
           };
         };
       };
