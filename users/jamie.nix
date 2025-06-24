@@ -27,7 +27,6 @@
     "md.obsidian.Obsidian"
     "com.github.tchx84.Flatseal"
     "org.gnome.World.PikaBackup"
-    "com.visualstudio.code"
     "md.obsidian.Obsidian.desktop"
   ];
 
@@ -46,6 +45,18 @@
     traceroute
     dig     # Also contains nslookup
   ];
+
+  # VScode
+  programs.vscode = {
+    enable = true;
+  };
+
+  # Git
+  programs.git = {
+    enable = true;
+    userName = "Jamie";
+    userEmail = "jamie@jnsn.me";
+  };
 
   # Add .local/bin to PATH
   home.sessionPath = [ "$HOME/.local/bin" ];

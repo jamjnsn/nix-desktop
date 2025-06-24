@@ -23,6 +23,22 @@
     };
   };
 
+  # Allow unfree packages
+  nixpkgs.config.allowUnfree = true;
+
+  # Disable power management to avoid horrible WiFi
+  networking.networkmanager.wifi.powersave = false;
+  boot.extraModprobeConfig = ''
+    options iwlwifi power_save=0
+    options iwlmvm power_scheme=1
+  '';
+
+  # Power management
+  powerManagement = {
+    enable = true;
+    powertop.enable = true;  # Optimizes other components
+  };
+
   # Boot settings
   boot = {
     initrd.systemd.enable = true;
@@ -60,14 +76,6 @@
 
   # Enable Tailscale
   services.tailscale.enable = true;
-  services.tailscale.useRoutingFeatures = "both";
-  services.tailscale.extraUpFlags =
-    [ "--ssh" "--advertise-exit-node" "--advertise-tags=tag:server" ];
-  networking.firewall.checkReversePath =
-    "loose"; # https://github.com/tailscale/tailscale/issues/4432#issuecomment-1112819111
-  services.resolved.enable =
-    true; # https://github.com/tailscale/tailscale/issues/4254
-  # TODO: Apply this fix: https://tailscale.com/kb/1320/performance-best-practices#ethtool-configurationhttps://tailscale.com/kb/1320/performance-best-practices#ethtool-configuration
 
   # Firewall
   networking.firewall = {
@@ -78,6 +86,9 @@
 
   # Networking
   networking.networkmanager.enable = true;
+  networking.nameservers = [ 
+    "9.9.9.9" "149.112.112.112" # Quad9
+  ];
 
   # Set your time zone.
   time.timeZone = "America/Vancouver";
@@ -170,6 +181,7 @@
     tldr
     zsh
     usbutils
+    git
 
     # Archive tools
     zip
