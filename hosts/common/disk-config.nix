@@ -79,7 +79,7 @@
       "/tmp" = {
         fsType = "tmpfs";
         mountOptions = [
-          "size=2G"
+          "size=4G"
         ];
       };
     };
