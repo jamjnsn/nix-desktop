@@ -61,8 +61,11 @@ in
     # Network utilities
     traceroute
     dig     # Also contains nslookup
-  ];
 
+    # Fonts
+    nerd-fonts.jetbrains-mono
+  ];
+  
   # Add .local/bin to PATH
   home.sessionPath = [ "$HOME/.local/bin" ];
 
