@@ -11,9 +11,21 @@
     settings = {
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
-      trusted-public-keys = [ 
-        "desky:WnCW8C/gDmA7lqW3uzAW3Bw7qvW0hTX3NepWifDJybY=%" # Desky WSL
+
+      # NixOS binary cache
+      substituters = [
+        "https://cache.nixos.org/"
       ];
+
+      # Public keys for pushing builds
+      trusted-public-keys = [ 
+        "desky:WnCW8C/gDmA7lqW3uzAW3Bw7qvW0hTX3NepWifDJybY=%"             # Desky WSL
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="  # NixOS binary cache
+      ];
+
+      # Faster rebuild
+      builders-use-substitutes = true;
+      max-jobs = "auto";
     };
 
     gc = {
@@ -73,6 +85,7 @@
   # Tweaks
   services.fstrim.enable = true;
   services.printing.enable = true;
+  services.avahi.enable = true;
 
   # Enable Tailscale
   services.tailscale.enable = true;
@@ -134,7 +147,7 @@
     uid = 1000;
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" ];
+    extraGroups = [ "wheel" "networkmanager" ];
     hashedPassword = "$6$bNA3pkIN8HqDgv2H$s50wORlm48JP/dwzHZAhDU8c5DToBluyCMd3f.IlTnOJ87js6Cw0KS3D40tRNvoslFV8oHBJfk8JNipjVVzvq1"; # empty password
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICG/Ktp96ldlqZwoH4dGQl6uBLBF3i8xLbnF4PAS+gJx jamie@desky"

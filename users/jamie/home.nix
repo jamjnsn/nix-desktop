@@ -25,6 +25,7 @@ in
   imports = [
     flake-inputs.nix-flatpak.homeManagerModules.nix-flatpak
 
+    ./programs/dev.nix
     ./programs/podman.nix
     ./programs/distrobox.nix
     ./programs/zsh.nix
@@ -61,18 +62,6 @@ in
     traceroute
     dig     # Also contains nslookup
   ];
-
-  # VScode
-  programs.vscode = {
-    enable = true;
-  };
-
-  # Git
-  programs.git = {
-    enable = true;
-    userName = "Jamie";
-    userEmail = "jamie@jnsn.me";
-  };
 
   # Add .local/bin to PATH
   home.sessionPath = [ "$HOME/.local/bin" ];

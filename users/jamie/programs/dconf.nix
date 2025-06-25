@@ -48,7 +48,7 @@
       "org/gnome/shell/extensions/just-perfection" = {
         animation = 2;
         workspace-wrap-around = true; 
-      }
+      };
     };
   };
 }
