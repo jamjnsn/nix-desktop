@@ -2,6 +2,7 @@
 {
   imports = [
     inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t480
+    ./hardware-configuration.nix
   ];
 
   boot.initrd.kernelModules = [ "i915" ];

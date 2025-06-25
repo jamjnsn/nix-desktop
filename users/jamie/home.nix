@@ -2,19 +2,35 @@
 
 { config, pkgs, flake-inputs, ... }:
 
+let
+  gnomeExtensions = with pkgs.gnomeExtensions; [
+    blur-my-shell 
+    caffeine 
+    gsconnect 
+    removable-drive-menu 
+    user-themes
+    tailscale-qs
+    appindicator            # Tray icons
+    just-perfection
+    pip-on-top              # Allows PiP from Firefox to work in Wayland
+    wtmb-window-thumbnails  # OnTopReplica
+  ];
+in
 {
   home.username = "jamie";
   home.homeDirectory = "/home/jamie";
 
+  _module.args.gnomeExtensions = gnomeExtensions;
+
   imports = [
     flake-inputs.nix-flatpak.homeManagerModules.nix-flatpak
 
-    ./modules/podman.nix
-    ./modules/distrobox.nix
-    ./modules/gnome.nix
-    ./modules/dconf.nix
-    ./modules/zsh.nix
-    ./modules/kitty.nix
+    ./programs/podman.nix
+    ./programs/distrobox.nix
+    ./programs/zsh.nix
+    ./programs/kitty.nix
+    ./programs/gnome.nix 
+    ./programs/dconf.nix
   ];
 
   # Fonts

@@ -1,17 +1,8 @@
-{ config, pkgs, ... }:
+{ config, pkgs, gnomeExtensions, ... }:
 {
   home.packages = 
     (with pkgs; [
-    ]) ++
-    (with pkgs.gnomeExtensions; [
-      # These also need to be added to dconf.nix to enable them.
-      # I couldn't find a way to keep this DRY.
-      blur-my-shell 
-      caffeine 
-      gsconnect 
-      removable-drive-menu 
-      user-themes 
-    ]);
+    ]) ++ gnomeExtensions;
 
   gtk = {
     enable = true;

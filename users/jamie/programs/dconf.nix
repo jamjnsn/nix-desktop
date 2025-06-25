@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, gnomeExtensions, ... }:
 {
   dconf = {
     enable = true;
@@ -13,16 +13,6 @@
         "kitty.desktop"
         "org.gnome.Nautilus.desktop"
       ];
-      
-      "org/gnome/shell".disable-user-extensions = false;
-      "org/gnome/shell".enabled-extensions =
-        map (extension: extension.extensionUuid) (with pkgs.gnomeExtensions; [ 
-            blur-my-shell 
-            caffeine 
-            gsconnect 
-            removable-drive-menu 
-            user-themes
-          ]);
 
       "org/gnome/desktop/interface" = {
         gtk-theme = "Adwaita-dark";
@@ -51,6 +41,14 @@
         command = "kitty-tdrop.sh";
         name = "Open Kitty tdrop";
       };
+
+      # Extensions
+      "org/gnome/shell".disable-user-extensions = false;
+      "org/gnome/shell".enabled-extensions = map (extension: extension.extensionUuid) gnomeExtensions;
+      "org/gnome/shell/extensions/just-perfection" = {
+        animation = 2;
+        workspace-wrap-around = true; 
+      }
     };
   };
 }

@@ -44,18 +44,17 @@
           nix-flatpak.nixosModules.nix-flatpak
 
           # Base configuration
-          ./configuration.nix
+          ./hosts/common
 
           # Host-specific configuration
-          ./hosts/${hostName}/configuration.nix
-          ./hosts/${hostName}/hardware-configuration.nix 
+          ./hosts/${hostName}
 
           # Home Manager
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.jamie = import ./users/jamie.nix;
+            home-manager.users.jamie = import ./users/jamie/home.nix;
             home-manager.extraSpecialArgs.flake-inputs = inputs;
           }
         ];
