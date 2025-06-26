@@ -38,24 +38,12 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
-  # Disable power management to avoid horrible WiFi
-  networking.networkmanager.wifi.powersave = false;
-  boot.extraModprobeConfig = ''
-    options iwlwifi power_save=0
-    options iwlmvm power_scheme=1
-  '';
-
-  # Power management
-  powerManagement = {
-    enable = true;
-    powertop.enable = true;  # Optimizes other components
-  };
-
   # Boot settings
   boot = {
     initrd.systemd.enable = true;
 
     loader = {
+      timeout = 1;
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
@@ -70,9 +58,6 @@
       "udev.log_priority=3"
       "rd.systemd.show_status=auto"
     ];
-
-    # Hide the OS choice for bootloaders (unless any key is pressed)
-    loader.timeout = 0;
 
     plymouth = {
       enable = true;
@@ -194,8 +179,10 @@
     tree
     tldr
     zsh
-    usbutils
     git
+    
+    usbutils
+    pciutils
 
     # Archive tools
     zip

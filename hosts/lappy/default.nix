@@ -17,14 +17,16 @@
     };
   };
 
+  # Disable power management to avoid horrible WiFi
   networking.networkmanager.wifi.powersave = false;
   boot.extraModprobeConfig = ''
     options iwlwifi power_save=0
     options iwlmvm power_scheme=1
   '';
-
+  
+  # Power management
   powerManagement = {
     enable = true;
-    powertop.enable = true;
+    powertop.enable = true;  # Optimizes other components
   };
 }

@@ -4,6 +4,11 @@
     ./hardware-configuration.nix
   ];
 
+  # Disable AMD 
+
+  # Early graphics
+  boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+
   # Dual boot
   # boot.loader.systemd-boot.windows = {
   #   "windows" = {
@@ -18,13 +23,11 @@
     enable = true;
   };
 
-  # Load nvidia driver for Xorg and Wayland
-  services.xserver.videoDrivers = ["nvidia"];
+  # Use AMDGPU as fallback
+  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
 
   hardware.nvidia = {
-
-    # Modesetting is required.
-    modesetting.enable = true;
+    modesetting.enable = true; # Required
 
     # Nvidia power management. Experimental, and can cause sleep/suspend to fail.
     # Enable this if you have graphical corruption issues or application crashes after waking
