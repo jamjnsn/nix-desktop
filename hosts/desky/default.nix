@@ -1,6 +1,14 @@
-{ config, lib, pkgs, inputs, ... }:
+{ config, lib, pkgs, inputs, disko, ... }:
 {
+  networking.hostName = "desky";
+  networking.hostId = "3e7b3b0b";
+
   imports = [
+    (import ../common/disk-config.nix { 
+      inherit lib; 
+      rootDisk = "/dev/disk/by-id/nvme-CT2000P3SSD8_2311E6BBF76F"; 
+    })
+
     ./hardware-configuration.nix
   ];
 

@@ -15,32 +15,19 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-
-    sops-nix.url = "github:Mic92/sops-nix";
-
-    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
   };
 
-  outputs = { self, nixpkgs, home-manager, disko, nix-flatpak, nixos-hardware, ... }@inputs: 
-    let
-      makeHost = hostName: hostId: diskId: nixpkgs.lib.nixosSystem {
+   outputs = { self, nixpkgs, home-manager, nix-flatpak, disko, ... }@inputs: 
+  let
+    hosts = [ "desky" "lappy" ];
+    # users = [ "jamie" ];
+
+    mkHost = hostname: {
+      name = hostname;
+
+      value = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
-        
-        # specialArgs = {
-        #   inherit inputs;
-        #   # This needs to be refactored to support multiple hosts.
-        #   diskDevice = "/dev/disk/by-id/nvme-LENSE30256GMSP34MEAT3TA_1304720404575";
-        # };
-
-        
-
         modules = [
-          # Set hostname and ID
-          ({ ... }: { networking.hostName = hostName; })
-          ({ ... }: { networking.hostId = hostId; })
-
-          ({ ... }: { _module.args.targetDisk = "/dev/disk/by-id/" + diskId; })
-
           # Disk configuration
           disko.nixosModules.disko
 
@@ -49,11 +36,8 @@
 
           # Base configuration
           ./hosts/common
+          ./hosts/${hostname}
 
-          # Host-specific configuration
-          ./hosts/${hostName}
-
-          # Home Manager
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;
@@ -63,11 +47,9 @@
           }
         ];
       };
-    in {
-      # Host definitions. Provide a hostname and a unique 32-bit (8 hexadecimal characters) host ID.
-      nixosConfigurations = {
-        lappy = makeHost "lappy" "3e7b3b0a" "nvme-LENSE30256GMSP34MEAT3TA_1304720404575";
-        desky = makeHost "desky" "3e7b3b0b" "nvme-CT2000P3SSD8_2311E6BBF76F";
-      };
     };
+  in
+  {
+    nixosConfigurations = builtins.listToAttrs (map mkHost hosts);
+  };
 }

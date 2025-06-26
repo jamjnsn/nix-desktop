@@ -1,11 +1,11 @@
 # See: https://github.com/nix-community/disko/blob/master/example/zfs-encrypted-root.nix
 
-{ lib, targetDisk, ... }: {
+{ lib, rootDisk, ... }: {
   disko.devices = {
     disk = {
       main = {
         type = "disk";
-        device = targetDisk;
+        device = rootDisk;
         content = {
           type = "gpt";
 

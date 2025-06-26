@@ -68,7 +68,7 @@
   };
 
   # Tweaks
-  services.fstrim.enable = true;
+  services.fstrim.enable = lib.mkDefault true;
   services.printing.enable = true;
   services.avahi.enable = true;
 
