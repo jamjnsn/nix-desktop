@@ -1,4 +1,9 @@
 { config, pkgs, gnomeExtensions, ... }:
+let 
+  whitesurIconTheme = pkgs.whitesur-icon-theme.override {
+    alternativeIcons = true;
+  };
+in
 {
   home.packages = 
     (with pkgs; [
@@ -6,9 +11,15 @@
 
   gtk = {
     enable = true;
+
     theme = {
       name = "Adwaita-dark";
       package = pkgs.gnome-themes-extra;
+    };
+
+    iconTheme = {
+      name = "WhiteSur-dark";
+      package = whitesurIconTheme;
     };
   };
 
