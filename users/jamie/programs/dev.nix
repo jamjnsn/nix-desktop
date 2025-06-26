@@ -20,7 +20,7 @@
   # Git
   programs.git = {
     enable = true;
-    userName = "Jamie";
+    userName = "Jamie Jansen";
     userEmail = "jamie@jnsn.me";
   };
 }
