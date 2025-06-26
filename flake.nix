@@ -20,7 +20,7 @@
    outputs = { self, nixpkgs, home-manager, nix-flatpak, disko, ... }@inputs: 
   let
     hosts = [ "desky" "lappy" ];
-    # users = [ "jamie" ];
+    users = [ "jamie" ];
 
     mkHost = hostname: {
       name = hostname;
@@ -42,7 +42,14 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            home-manager.users.jamie = import ./users/jamie/home.nix;
+
+            home-manager.users = builtins.listToAttrs (
+              map (name: {
+                name = name;
+                value = import (./users + "/${name}/home.nix");
+              }) users
+            );
+
             home-manager.extraSpecialArgs.flake-inputs = inputs;
           }
         ];
