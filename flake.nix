@@ -23,19 +23,23 @@
 
   outputs = { self, nixpkgs, home-manager, disko, nix-flatpak, nixos-hardware, ... }@inputs: 
     let
-      makeHost = hostName: hostId: nixpkgs.lib.nixosSystem {
+      makeHost = hostName: hostId: diskId: nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         
-        specialArgs = {
-          inherit inputs;
-          # This needs to be refactored to support multiple hosts.
-          diskDevice = "/dev/disk/by-id/nvme-LENSE30256GMSP34MEAT3TA_1304720404575";
-        };
+        # specialArgs = {
+        #   inherit inputs;
+        #   # This needs to be refactored to support multiple hosts.
+        #   diskDevice = "/dev/disk/by-id/nvme-LENSE30256GMSP34MEAT3TA_1304720404575";
+        # };
+
+        
 
         modules = [
           # Set hostname and ID
           ({ ... }: { networking.hostName = hostName; })
           ({ ... }: { networking.hostId = hostId; })
+
+          ({ ... }: { _module.args.targetDisk = "/dev/disk/by-id/" + diskId; })
 
           # Disk configuration
           disko.nixosModules.disko
@@ -62,7 +66,8 @@
     in {
       # Host definitions. Provide a hostname and a unique 32-bit (8 hexadecimal characters) host ID.
       nixosConfigurations = {
-        lappy = makeHost "lappy" "3e7b3b0a";
+        lappy = makeHost "lappy" "3e7b3b0a" "nvme-LENSE30256GMSP34MEAT3TA_1304720404575";
+        desky = makeHost "desky" "3e7b3b0b" "nvme-CT2000P3SSD8_2311E6BBF76F";
       };
     };
 }
