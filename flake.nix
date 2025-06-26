@@ -27,6 +27,7 @@
 
       value = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
+         
         modules = [
           # Disk configuration
           disko.nixosModules.disko
@@ -40,7 +41,7 @@
 
           home-manager.nixosModules.home-manager
           {
-            home-manager.useGlobalPkgs = true;
+            home-manager.useGlobalPkgs = false;
             home-manager.useUserPackages = true;
 
             home-manager.users = builtins.listToAttrs (

@@ -22,6 +22,14 @@ in
 
   _module.args.gnomeExtensions = gnomeExtensions;
 
+  nixpkgs = {
+    config = {
+      allowUnfree = true;
+    };
+
+    overlays = [];
+  };
+
   imports = [
     flake-inputs.nix-flatpak.homeManagerModules.nix-flatpak
 
@@ -42,9 +50,10 @@ in
     "com.discordapp.Discord"
     "com.spotify.Client"
     "md.obsidian.Obsidian"
-    "com.github.tchx84.Flatseal"
     "org.gnome.World.PikaBackup"
     "md.obsidian.Obsidian.desktop"
+    "page.tesk.Refine" # GNOME Tweaks alternative
+    "com.github.tchx84.Flatseal"
   ];
 
   # Packages
