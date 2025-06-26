@@ -23,7 +23,7 @@
 
   services.xserver.videoDrivers = [ "intel" ];
 
-  hardware.opengl = {
+  hardware.graphics = {
     enable = true;
     
     extraPackages = with pkgs; [
