@@ -1,4 +1,4 @@
-{ config, pkgs, gnomeExtensions, ... }:
+{ config, pkgs, lib, gnomeExtensions, ... }:
 {
   dconf = {
     enable = true;
@@ -9,11 +9,16 @@
         "com.spotify.Client.desktop"
         "com.discordapp.Discord.desktop"
         "md.obsidian.Obsidian.desktop"
-        "com.visualstudio.code.desktop"
         "kitty.desktop"
+        "code.desktop"
         "org.gnome.Nautilus.desktop"
       ];
+      
+      "org/gnome/system/location" = {
+        enabled = true;
+      };
 
+      # Appearance
       "org/gnome/desktop/interface" = {
         gtk-theme = "Adwaita-dark";
         color-scheme = "prefer-dark";
@@ -24,11 +29,8 @@
         night-light-enabled = true;
         night-light-schedule-automatic = true;
       };
-      
-      "org/gnome/system/location" = {
-        enabled = true;
-      };
 
+      # Keybindings
       "org/gnome/desktop/wm/keybindings" = {
         switch-applications = [];
         switch-applications-backward = [];
@@ -36,10 +38,25 @@
         switch-windows-backward = [ "<Shift><Alt>Tab" ];
       };
 
+      "org/gnome/settings-daemon/plugins/media-keys" = {
+        custom-keybindings = [
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+        ];
+      };
+
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
+        name = "Kitty Tdrop";
+        command = "/home/jamie/.local/bin/kitty-tdrop.sh";
         binding = "<Super>grave";
-        command = "kitty-tdrop.sh";
-        name = "Open Kitty tdrop";
+      };
+
+      # Power settings
+      "org/gnome/settings-daemon/plugins/power" = {
+        sleep-inactive-ac-timeout = 7200; # In seconds. This is 2 hours.
+      };
+
+      "org/gnome/desktop/session" = {
+        idle-delay = lib.hm.gvariant.mkUint32 900;
       };
 
       # Extensions
