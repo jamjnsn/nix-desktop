@@ -14,6 +14,7 @@
 
   boot.blacklistedKernelModules = [ "amdgpu" "radeon" ];
   boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   # Dual boot
   # boot.loader.systemd-boot.windows = {
@@ -24,16 +25,11 @@
   #   };
   # };
 
-  # Enable OpenGL
   hardware.graphics = {
     enable = true;
+    enable32bit = true;
   };
-
-  # 32 bit driver support for Steam
-  hardware.opengl.driSupport32Bit = true;
  
-  services.xserver.videoDrivers = [ "nvidia" ];
-
   hardware.nvidia = {
     modesetting.enable = true; # Required
 
