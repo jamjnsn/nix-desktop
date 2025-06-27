@@ -14,6 +14,7 @@ let
     just-perfection
     pip-on-top              # Allows PiP from Firefox to work in Wayland
     wtmb-window-thumbnails  # OnTopReplica
+    dash-to-dock
   ];
 in
 {
@@ -40,6 +41,7 @@ in
     ./programs/kitty.nix
     ./programs/gnome.nix 
     ./programs/dconf.nix
+    ./programs/gaming.nix
   ];
 
   # Fonts
