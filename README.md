@@ -27,6 +27,10 @@ This configuration can be installed to a remote machine using `nixos-anywhere`.
    ```
    nixos-rebuild switch --flake '.#lappy' --verbose --use-remote-sudo --target-host jamie@lappy
    ```
+6. Enroll the TPM key for the root disk device:
+   ```
+   sudo systemd-cryptenroll --tpm2-device=auto /dev/disk/by-id/<disk ID here>-part2
+   ```
 
 ## Applying Configuration
 

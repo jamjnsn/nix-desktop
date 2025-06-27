@@ -1,20 +1,20 @@
-{ config, lib, pkgs, inputs, disko, ... }:
+{ config, lib, pkgs, ... }:
+let 
+  rootDisk = "/dev/disk/by-id/nvme-CT2000P3SSD8_2311E6BBF76F";
+in
 {
   networking.hostName = "desky";
   networking.hostId = "3e7b3b0b";
+  boot.initrd.luks.devices.root.device = rootDisk;
 
   imports = [
     (import ../common/disk-config.nix { 
       inherit lib; 
-      rootDisk = "/dev/disk/by-id/nvme-CT2000P3SSD8_2311E6BBF76F"; 
+      inherit rootDisk;
     })
 
     ./hardware-configuration.nix
   ];
-
-  boot.blacklistedKernelModules = [ "amdgpu" "radeon" ];
-  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
-  services.xserver.videoDrivers = [ "nvidia" ];
 
   # Dual boot
   # boot.loader.systemd-boot.windows = {
@@ -24,6 +24,12 @@
   #     sortKey = "z_windows";
   #   };
   # };
+
+  # Prevent amd stuff from potentially conflicting
+  boot.blacklistedKernelModules = [ "amdgpu" "radeon" ];
+  
+  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.graphics = {
     enable = true;

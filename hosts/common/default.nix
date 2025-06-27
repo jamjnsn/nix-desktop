@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, rootDisk, ... }:
 
 {
   imports = [
@@ -39,10 +39,14 @@
   # Allow unfree packages
   nixpkgs.config.allowUnfree = true;
 
+  # TPM
+  security.tpm2.enable = true;
+  boot.initrd.systemd.enable = true;
+  boot.initrd.systemd.tpm2.enable = true;
+
   # Boot settings
   boot = {
-    initrd.systemd.enable = true;
-
+    # Loader settings
     loader = {
       timeout = 1;
       systemd-boot.enable = true;
