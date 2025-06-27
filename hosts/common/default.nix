@@ -9,6 +9,7 @@
   # Enable flakes
   nix = {
     settings = {
+      download-buffer-size = 524288000; # 500 MiB (in bytes)
       auto-optimise-store = true;
       experimental-features = [ "nix-command" "flakes" ];
 
@@ -71,6 +72,7 @@
   services.fstrim.enable = lib.mkDefault true;
   services.printing.enable = true;
   services.avahi.enable = true;
+  programs.gamemode.enable = true;
 
   # Enable Tailscale
   services.tailscale.enable = true;
@@ -177,12 +179,14 @@
     wget
     curl
     tree
-    tldr
     zsh
     git
+    htop
     
     usbutils
     pciutils
+    psmisc # killall and fuser
+    lsof
 
     # Archive tools
     zip
