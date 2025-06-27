@@ -1,4 +1,8 @@
 { config, pkgs, lib, flake-inputs, ... }:
+let
+  helpers = import ../../lib/helpers.nix { inherit pkgs lib; };
+  modulePaths = helpers.importDir ./modules;
+in
 {
   home.username = "jamie";
   home.homeDirectory = "/home/jamie";
@@ -15,19 +19,7 @@
 
   imports = [
     flake-inputs.nix-flatpak.homeManagerModules.nix-flatpak
-    
-    # TODO: Import automatically (*.nix, moduleName/default.nix)
-    ./modules/dev.nix
-    ./modules/distrobox.nix
-    ./modules/gaming.nix
-    ./modules/gnome.nix
-    ./modules/kitty.nix
-    ./modules/mcfly.nix
-    ./modules/podman.nix
-    ./modules/tealdeer.nix
-    ./modules/zoxide.nix
-    ./modules/zsh.nix
-  ];
+  ] ++ modulePaths;
 
   # Fonts
   fonts.fontconfig.enable = true;
