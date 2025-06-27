@@ -17,13 +17,13 @@ in
   ];
 
   # Dual boot
-  # boot.loader.systemd-boot.windows = {
-  #   "windows" = {
-  #     title = "Windows 11";
-  #     efiDeviceHandle = "FS1"; # Adjust this to match your system's EFI mapping
-  #     sortKey = "z_windows";
-  #   };
-  # };
+  boot.loader.systemd-boot.windows = {
+    "windows" = {
+      title = "Windows 11";
+      efiDeviceHandle = "FS1";
+      sortKey = "z_windows";
+    };
+  };
 
   # Prevent amd stuff from potentially conflicting
   boot.blacklistedKernelModules = [ "amdgpu" "radeon" ];

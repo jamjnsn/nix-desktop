@@ -51,6 +51,14 @@
       timeout = 1;
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
+
+      # Add EFI shell entry
+      systemd-boot.extraEntries = {
+        "efi-shell.conf" = ''
+          title EFI Shell
+          efi /EFI/tools/Shell.efi
+        '';
+      };
     };
 
     # Enable "Silent boot"
@@ -192,12 +200,23 @@
     psmisc # killall and fuser
     lsof
 
+    edk2-uefi-shell
+
     # Archive tools
     zip
     p7zip
     unzip
   ];
 
+  # Copy EFI shell to ESP
+  system.activationScripts.efi-shell = ''
+    if [ -d /boot/EFI ]; then
+      mkdir -p /boot/EFI/tools
+      cp ${pkgs.edk2-uefi-shell}/shell.efi /boot/EFI/tools/Shell.efi
+    fi
+  '';
+
+  # Default editor
   environment.variables.EDITOR = "nano";
 
   # Fonts
