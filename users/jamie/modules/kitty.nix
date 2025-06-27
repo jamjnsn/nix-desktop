@@ -1,32 +1,33 @@
-{ config, pkgs, ... }:
-
 {
   programs.kitty = {
     enable = true;
-
     settings = {
-      linux_display_server = "x11"; # Needed to not have ugly window decorations
-
       copy_on_select = "yes";
       strip_trailing_spaces = "always";
       enable_audio_bell = "no";
+
+      enabled_layouts = "splits,stack";
+
       confirm_os_window_close = "0";
       show_hyperlink_targets = "yes";
       underline_hyperlinks = "always";
-      shell_integration = "no-cursor";
-      cursor_shape = "underline";
-      cursor_underline_thickness = "3.0";
-      cursor_trail = "1";
-      window_padding_width = "20";
-      scrollback_fill_enlarged_window = "yes";
-      window_border_width = "1pt";
-      background_opacity = "0.98";
-      dynamic_background_opacity = "yes";
 
       font_family = "JetBrainsMono Nerd Font";
       font_size = "13.0";
       disable_ligatures = "never";
       font_features = "JetBrainsMonoNerdFont-Normal +zero +ss04 +ss03 +calt +ss01";
+
+      cursor_shape = "underline";
+      cursor_underline_thickness = "3.0";
+      shell_integration = "no-cursor";
+      cursor_trail = "1";
+
+      linux_display_server = "x11"; # Needed for nice window decorations
+      window_padding_width = "20";
+      scrollback_fill_enlarged_window = "yes";
+      window_border_width = "1pt";
+      background_opacity = "0.98";
+      dynamic_background_opacity = "yes";
 
       background = "#191919";
       foreground = "#bfbdb6";
@@ -56,6 +57,23 @@
       "ctrl+t" = "new_tab";
       "ctrl+tab" = "next_tab";
       "ctrl+shift+tab" = "previous_tab";
+      "alt+enter" = "toggle_layout stack";
+      "alt+/" = "launch --cwd=current --location=vsplit";
+      "alt+-" = "launch --cwd=current --location=hsplit";
+      "alt+q" = "close_window";
+      "alt+left" = "neighboring_window left";
+      "alt+right" = "neighboring_window right";
+      "alt+up" = "neighboring_window up";
+      "alt+down" = "neighboring_window down";
     };
+
+    extraConfig = ''
+      startup_session ~/.config/kitty/startup.conf
+    '';
   };
+
+  home.file.".config/kitty/startup.conf".text = ''
+    new_tab Default
+    layout tall
+  '';
 }

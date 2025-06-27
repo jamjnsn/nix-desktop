@@ -27,5 +27,10 @@
     enable = true;
     userName = "Jamie Jansen";
     userEmail = "jamie@jnsn.me";
+    extraConfig = {
+      init = {
+        defaultBranch = "main";
+      };
+    };
   };
 }

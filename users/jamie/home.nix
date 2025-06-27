@@ -1,8 +1,6 @@
-# flake-inputs accesses inputs from flake.nix
-
-{ config, pkgs, flake-inputs, ... }:
-
+{ config, pkgs, lib, flake-inputs, ... }:
 let
+  # Define GNOME extensions
   gnomeExtensions = with pkgs.gnomeExtensions; [
     blur-my-shell 
     caffeine 
@@ -33,15 +31,18 @@ in
 
   imports = [
     flake-inputs.nix-flatpak.homeManagerModules.nix-flatpak
-
-    ./programs/dev.nix
-    ./programs/podman.nix
-    ./programs/distrobox.nix
-    ./programs/zsh.nix
-    ./programs/kitty.nix
-    ./programs/gnome.nix 
-    ./programs/dconf.nix
-    ./programs/gaming.nix
+    
+    # TODO: Import automatically (*.nix, moduleName/default.nix)
+    ./modules/dconf.nix
+    ./modules/dev.nix
+    ./modules/distrobox.nix
+    ./modules/gaming.nix
+    ./modules/kitty.nix
+    ./modules/mcfly.nix
+    ./modules/podman.nix
+    ./modules/tealdeer.nix
+    ./modules/zoxide.nix
+    ./modules/zsh.nix
   ];
 
   # Fonts
@@ -64,7 +65,6 @@ in
     eza     # ls alternative
     fzf
     zoxide
-    tldr
     gomi    # Trash CLI
     yt-dlp
     tdrop

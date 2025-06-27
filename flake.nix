@@ -24,6 +24,7 @@
     hosts = [ "desky" "lappy" ];
     users = [ "jamie" ];
 
+    # TODO: Maybe move this function to a lib?
     mkHost = hostname: {
       name = hostname;
 

@@ -1,4 +1,4 @@
-{ config, pkgs, lib, gnomeExtensions, ... }:
+{ pkgs, lib, gnomeExtensions, ... }:
 {
   dconf = {
     enable = true;
