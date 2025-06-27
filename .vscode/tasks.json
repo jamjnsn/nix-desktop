@@ -2,12 +2,36 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "NixOS Rebuild Switch",
+      "label": "Rebuild and switch current system",
       "type": "shell",
       "command": "sudo nixos-rebuild switch --flake .",
       "group": {
         "kind": "build",
         "isDefault": true
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "focus": true
+      }
+    },
+    {
+      "label": "Remotely rebuild and switch for Lappy",
+      "type": "shell",
+      "command": "sudo nixos-rebuild switch --flake .#lappy --target-host jamie@lappy --use-remote-sudo",
+      "group": {
+        "kind": "build",
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "focus": true
+      }
+    },
+    {
+      "label": "Remotely rebuild and switch for Desky",
+      "type": "shell",
+      "command": "sudo nixos-rebuild switch --flake .#desky --target-host jamie@desky-nix --use-remote-sudo",
+      "group": {
+        "kind": "build",
       },
       "problemMatcher": [],
       "presentation": {
