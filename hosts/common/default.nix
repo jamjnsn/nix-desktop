@@ -49,15 +49,19 @@
     # Loader settings
     loader = {
       timeout = 1;
-      systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
 
-      # Add EFI shell entry
-      systemd-boot.extraEntries = {
-        "efi-shell.conf" = ''
-          title EFI Shell
-          efi /EFI/tools/Shell.efi
-        '';
+      systemd-boot = {
+        enable = true;
+        configurationLimit = 10;
+
+        # Add EFI shell entry
+        extraEntries = {
+          "efi-shell.conf" = ''
+            title EFI Shell
+            efi /EFI/tools/Shell.efi
+          '';
+        };
       };
     };
 
