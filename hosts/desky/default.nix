@@ -12,10 +12,8 @@
     ./hardware-configuration.nix
   ];
 
-  # Disable AMD 
-
-  # Early graphics
-  boot.initrd.kernelModules = [ "nvidia" "nvidia_modeset" "nvidia_uvm" "nvidia_drm" ];
+  boot.blacklistedKernelModules = [ "amdgpu" "radeon" ];
+  boot.extraModulePackages = [ config.boot.kernelPackages.nvidia_x11 ];
 
   # Dual boot
   # boot.loader.systemd-boot.windows = {
@@ -31,8 +29,10 @@
     enable = true;
   };
 
-  # Use AMDGPU as fallback
-  services.xserver.videoDrivers = [ "nvidia" "amdgpu" ];
+  # 32 bit driver support for Steam
+  hardware.opengl.driSupport32Bit = true;
+ 
+  services.xserver.videoDrivers = [ "nvidia" ];
 
   hardware.nvidia = {
     modesetting.enable = true; # Required
@@ -53,7 +53,7 @@
     # supported GPUs is at: 
     # https://github.com/NVIDIA/open-gpu-kernel-modules#compatible-gpus 
     # Only available from driver 515.43.04+
-    open = false;
+    open = true;
 
     # Enable the Nvidia settings menu,
 	  # accessible via `nvidia-settings`.
