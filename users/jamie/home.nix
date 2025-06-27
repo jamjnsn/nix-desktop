@@ -3,12 +3,14 @@
   home.username = "jamie";
   home.homeDirectory = "/home/jamie";
 
+  nixpkgs.overlays = [
+    (import ../../overlays/product-sans.nix)
+  ];
+
   nixpkgs = {
     config = {
       allowUnfree = true;
     };
-
-    overlays = [];
   };
 
   imports = [
@@ -56,6 +58,7 @@
 
     # Fonts
     nerd-fonts.jetbrains-mono
+    product-sans
   ];
   
   # Add .local/bin to PATH

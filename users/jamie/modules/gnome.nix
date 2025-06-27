@@ -23,11 +23,10 @@ in
 {
   home.packages = 
     (with pkgs; [
-      refine
+      gnome-tweaks
     ]) ++ gnomeExtensions;
 
   services.flatpak.packages = [
-    "page.tesk.Refine" # GNOME Tweaks alternative
   ];
 
   gtk = {
@@ -41,6 +40,11 @@ in
     iconTheme = {
       name = "WhiteSur-dark";
       package = whitesurIconTheme;
+    };
+
+    font = {
+      name = "Product Sans";
+      size = 11;
     };
   };
 

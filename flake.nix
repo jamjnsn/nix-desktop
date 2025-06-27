@@ -4,23 +4,19 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
-    home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    home-manager.url = "github:nix-community/home-manager/release-25.05";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
     
-    disko = {
-      url = "github:nix-community/disko";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
-
     vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
-   outputs = { self, nixpkgs, home-manager, nix-flatpak, disko, ... }@inputs: 
+  outputs = { self, nixpkgs, home-manager, nix-flatpak, disko, ... } @ inputs:
   let
+    # Define hosts and users
     hosts = [ "desky" "lappy" ];
     users = [ "jamie" ];
 
