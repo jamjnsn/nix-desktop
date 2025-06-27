@@ -1,25 +1,7 @@
 { config, pkgs, lib, flake-inputs, ... }:
-let
-  # Define GNOME extensions
-  gnomeExtensions = with pkgs.gnomeExtensions; [
-    blur-my-shell 
-    caffeine 
-    gsconnect 
-    removable-drive-menu 
-    user-themes
-    tailscale-qs
-    appindicator            # Tray icons
-    just-perfection
-    pip-on-top              # Allows PiP from Firefox to work in Wayland
-    wtmb-window-thumbnails  # OnTopReplica
-    dash-to-dock
-  ];
-in
 {
   home.username = "jamie";
   home.homeDirectory = "/home/jamie";
-
-  _module.args.gnomeExtensions = gnomeExtensions;
 
   nixpkgs = {
     config = {
@@ -33,10 +15,10 @@ in
     flake-inputs.nix-flatpak.homeManagerModules.nix-flatpak
     
     # TODO: Import automatically (*.nix, moduleName/default.nix)
-    ./modules/dconf.nix
     ./modules/dev.nix
     ./modules/distrobox.nix
     ./modules/gaming.nix
+    ./modules/gnome.nix
     ./modules/kitty.nix
     ./modules/mcfly.nix
     ./modules/podman.nix
@@ -55,7 +37,6 @@ in
     "md.obsidian.Obsidian"
     "org.gnome.World.PikaBackup"
     "md.obsidian.Obsidian.desktop"
-    "page.tesk.Refine" # GNOME Tweaks alternative
     "com.github.tchx84.Flatseal"
   ];
 
