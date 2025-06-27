@@ -1,5 +1,9 @@
-{ config, pkgs, ... }:
+{ config, pkgs, flake-inputs, ... }:
 {
+  imports = [
+    flake-inputs.vscode-server.homeModules.default
+  ];
+
   # Allows reading .envrc to load environment variables
   programs.direnv.enable = true;
   programs.direnv.nix-direnv.enable = true;
@@ -13,6 +17,7 @@
   ];
 
   # VScode
+  services.vscode-server.enable = true;
   programs.vscode = {
     enable = true;
   };

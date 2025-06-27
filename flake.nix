@@ -15,6 +15,8 @@
     };
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
+
+    vscode-server.url = "github:nix-community/nixos-vscode-server";
   };
 
    outputs = { self, nixpkgs, home-manager, nix-flatpak, disko, ... }@inputs: 
