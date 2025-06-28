@@ -16,9 +16,6 @@
 
   # Development tools
   home.packages = with pkgs; [
-    nixd # Nix LSP
-    nil # Alternative Nix LSP
-    nixfmt-rfc-style # Nix formatter
   ];
 
   # VScode
