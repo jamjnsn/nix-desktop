@@ -1,4 +1,10 @@
-{ config, lib, pkgs, rootDisk, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  rootDisk,
+  ...
+}:
 
 {
   imports = [
@@ -11,7 +17,10 @@
     settings = {
       download-buffer-size = 524288000; # 500 MiB (in bytes)
       auto-optimise-store = true;
-      experimental-features = [ "nix-command" "flakes" ];
+      experimental-features = [
+        "nix-command"
+        "flakes"
+      ];
 
       # NixOS binary cache
       substituters = [
@@ -19,9 +28,9 @@
       ];
 
       # Public keys for pushing builds
-      trusted-public-keys = [ 
-        "desky:WnCW8C/gDmA7lqW3uzAW3Bw7qvW0hTX3NepWifDJybY=%"             # Desky WSL
-        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="  # NixOS binary cache
+      trusted-public-keys = [
+        "desky:WnCW8C/gDmA7lqW3uzAW3Bw7qvW0hTX3NepWifDJybY=%" # Desky WSL
+        "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" # NixOS binary cache
       ];
 
       # Faster rebuild
@@ -102,8 +111,9 @@
 
   # Networking
   networking.networkmanager.enable = true;
-  networking.nameservers = [ 
-    "9.9.9.9" "149.112.112.112" # Quad9
+  networking.nameservers = [
+    "9.9.9.9"
+    "149.112.112.112" # Quad9
   ];
 
   # Set your time zone.
@@ -143,14 +153,17 @@
 
   # Create admin user with default password
   users.mutableUsers = false; # Disable password changes
-  
+
   users.users.jamie = {
     description = "Jamie";
     home = "/home/jamie";
     uid = 1000;
     isNormalUser = true;
     shell = pkgs.zsh;
-    extraGroups = [ "wheel" "networkmanager" ];
+    extraGroups = [
+      "wheel"
+      "networkmanager"
+    ];
     hashedPassword = "$6$bNA3pkIN8HqDgv2H$s50wORlm48JP/dwzHZAhDU8c5DToBluyCMd3f.IlTnOJ87js6Cw0KS3D40tRNvoslFV8oHBJfk8JNipjVVzvq1"; # empty password
     openssh.authorizedKeys.keys = [
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICG/Ktp96ldlqZwoH4dGQl6uBLBF3i8xLbnF4PAS+gJx jamie@desky" # WSL
@@ -198,7 +211,7 @@
     zsh
     git
     htop
-    
+
     usbutils
     pciutils
     psmisc # killall and fuser

@@ -1,4 +1,10 @@
-{ config, pkgs, lib, flake-inputs, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  flake-inputs,
+  ...
+}:
 let
   helpers = import ../../lib/helpers.nix { inherit pkgs lib; };
   modulePaths = helpers.importDir ./modules;
@@ -36,23 +42,24 @@ in
 
   # Packages
   home.packages = with pkgs; [
-    bat     # cat alternative
-    eza     # ls alternative
+    bat # cat alternative
+    fd # find alternative
+    gomi # Trash CLI
+
     fzf
     zoxide
-    gomi    # Trash CLI
     yt-dlp
     tdrop
 
     # Network utilities
     traceroute
-    dig     # Also contains nslookup
+    dig # Also contains nslookup
 
     # Fonts
     nerd-fonts.jetbrains-mono
     product-sans
   ];
-  
+
   # Add .local/bin to PATH
   home.sessionPath = [ "$HOME/.local/bin" ];
 
@@ -64,7 +71,7 @@ in
 
   # NixOS version
   home.stateVersion = "25.05";
-  
+
   # Allow home-manager to manage itself
   programs.home-manager.enable = true;
 }

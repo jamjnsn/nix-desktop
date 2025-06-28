@@ -1,6 +1,7 @@
 # See: https://github.com/nix-community/disko/blob/master/example/zfs-encrypted-root.nix
 
-{ rootDisk, ... }: {
+{ rootDisk, ... }:
+{
   disko.devices = {
     disk = {
       main = {

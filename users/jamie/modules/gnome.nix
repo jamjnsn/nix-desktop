@@ -1,5 +1,10 @@
-{ config, lib, pkgs, ... }:
-let 
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+let
   # Modify whitesur-icon-theme package options
   whitesurIconTheme = pkgs.whitesur-icon-theme.override {
     alternativeIcons = true;
@@ -7,24 +12,25 @@ let
 
   # Define GNOME extensions
   gnomeExtensions = with pkgs.gnomeExtensions; [
-    blur-my-shell 
-    caffeine 
-    gsconnect 
-    removable-drive-menu 
+    blur-my-shell
+    caffeine
+    gsconnect
+    removable-drive-menu
     user-themes
     tailscale-qs
-    appindicator            # Tray icons
+    appindicator # Tray icons
     just-perfection
-    pip-on-top              # Allows PiP from Firefox to work in Wayland
-    wtmb-window-thumbnails  # OnTopReplica
+    pip-on-top # Allows PiP from Firefox to work in Wayland
+    wtmb-window-thumbnails # OnTopReplica
     dash-to-dock
   ];
 in
 {
-  home.packages = 
+  home.packages =
     (with pkgs; [
       gnome-tweaks
-    ]) ++ gnomeExtensions;
+    ])
+    ++ gnomeExtensions;
 
   services.flatpak.packages = [
   ];
@@ -70,7 +76,7 @@ in
         "code.desktop"
         "org.gnome.Nautilus.desktop"
       ];
-      
+
       "org/gnome/system/location" = {
         enabled = true;
       };
@@ -89,8 +95,8 @@ in
 
       # Keybindings
       "org/gnome/desktop/wm/keybindings" = {
-        switch-applications = [];
-        switch-applications-backward = [];
+        switch-applications = [ ];
+        switch-applications-backward = [ ];
         switch-windows = [ "<Alt>Tab" ];
         switch-windows-backward = [ "<Shift><Alt>Tab" ];
       };
@@ -121,7 +127,7 @@ in
       "org/gnome/shell".enabled-extensions = map (extension: extension.extensionUuid) gnomeExtensions;
       "org/gnome/shell/extensions/just-perfection" = {
         animation = 4;
-        workspace-wrap-around = true; 
+        workspace-wrap-around = true;
       };
     };
   };

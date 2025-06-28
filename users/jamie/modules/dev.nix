@@ -1,4 +1,9 @@
-{ config, pkgs, flake-inputs, ... }:
+{
+  config,
+  pkgs,
+  flake-inputs,
+  ...
+}:
 {
   imports = [
     flake-inputs.vscode-server.homeModules.default
@@ -11,9 +16,9 @@
 
   # Development tools
   home.packages = with pkgs; [
-    nixd              # Nix LSP
-    nil               # Alternative Nix LSP
-    nixfmt-rfc-style  # Nix formatter
+    nixd # Nix LSP
+    nil # Alternative Nix LSP
+    nixfmt-rfc-style # Nix formatter
   ];
 
   # VScode
