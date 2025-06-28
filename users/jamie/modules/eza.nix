@@ -1,15 +1,7 @@
 {
-  programs.eza = {
-    enable = true;
-    enableZshIntegration = true;
-    icons = "always";
-    colors = "always";
-    git = true;
-
-    extraOptions = [
-      "--group-directories-first"
-    ];
+  programs.eza.enable = true;
+  home.file.".config/eza/theme.yml".source = ../dotfiles/eza/one-dark.yml;
+  programs.zsh.shellAliases = {
+    ls = "eza --icons --group-directories-first";
   };
-
-  home.file.".config/eza/theme.yml".source = ../dotfiles/eza/theme.yml;
 }

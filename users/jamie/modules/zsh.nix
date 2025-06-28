@@ -28,15 +28,13 @@
       diff = "diff --color";
 
       # Replacements
-      dig = "dog";
-      cat = "bat";
       rm = "gomi";
 
       # Colorize
       ping = "grc \\ping";
 
       # Add untracked files in the repo and rebuild the system flake
-      nrs = "(cd ~/.nixos && git add -N . && sudo nixos-rebuild switch --flake .)";
+      nrs = "(cd ~/.config/nixos && git add -N . && sudo nixos-rebuild switch --flake .)";
 
       # Nix shell with packages (arguments can be empty)
       nsh = "nix-shell --packages";
