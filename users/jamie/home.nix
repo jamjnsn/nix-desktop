@@ -13,14 +13,15 @@ in
   home.username = "jamie";
   home.homeDirectory = "/home/jamie";
 
-  nixpkgs.overlays = [
-    (import ../../overlays/product-sans.nix)
-  ];
-
   nixpkgs = {
     config = {
       allowUnfree = true;
+      allowUnfreePredicate = _: true;
     };
+
+    overlays = [
+      (import ../../overlays/product-sans.nix)
+    ];
   };
 
   imports = [
