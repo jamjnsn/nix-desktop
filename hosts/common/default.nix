@@ -98,6 +98,7 @@
   services.printing.enable = true;
   services.avahi.enable = true;
   programs.gamemode.enable = true;
+  services.libinput.enable = true;
 
   # Enable Tailscale
   services.tailscale.enable = true;
@@ -200,6 +201,7 @@
   programs.zsh.enable = true;
   programs.firefox.enable = true;
   virtualisation.waydroid.enable = true;
+  programs.adb.enable = true;
 
   # System packages
   environment.systemPackages = with pkgs; [
