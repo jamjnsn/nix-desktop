@@ -30,6 +30,7 @@
       # Replacements
       dig = "dog";
       cat = "bat";
+      rm = "gomi";
 
       # Colorize
       ping = "grc \\ping";
