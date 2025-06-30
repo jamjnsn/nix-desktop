@@ -49,7 +49,7 @@ in
     };
 
     font = {
-      name = "Product Sans";
+      name = "Cantarell";
       size = 11;
     };
   };
