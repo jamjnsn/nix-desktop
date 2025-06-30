@@ -93,15 +93,16 @@
     };
   };
 
-  # Tweaks
+  # Services
   services.fstrim.enable = lib.mkDefault true;
   services.printing.enable = true;
   services.avahi.enable = true;
-  programs.gamemode.enable = true;
   services.libinput.enable = true;
-
-  # Enable Tailscale
+  services.gvfs.enable = true;
   services.tailscale.enable = true;
+
+  # Gaming
+  programs.gamemode.enable = true;
 
   # Firewall
   networking.firewall = {

@@ -52,6 +52,8 @@ in
     yt-dlp
     tdrop
 
+    samba
+
     # Network utilities
     traceroute
     dig # Also contains nslookup
