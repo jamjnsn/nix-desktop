@@ -1,3 +1,4 @@
+{ lib, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -56,17 +57,11 @@
       "ls *"
     ];
 
-    # Extra options (raw ZSH commands)
-    initContent = ''
-      # Imports
-      source $HOME/.config/zsh/options.zsh
-      source $HOME/.config/zsh/functions.zsh
-
-      # Prompt
-      source $HOME/.config/zsh/prompt.zsh
-    '';
+    # Extra config in .zsh files for syntax highlighting
+    initContent = lib.concatStringsSep "\n" [
+      (builtins.readFile ./options.zsh)
+      (builtins.readFile ./functions.zsh)
+      (builtins.readFile ./prompt.zsh)
+    ];
   };
-
-  # Copy
-  home.file.".config/zsh".source = ../dotfiles/zsh;
 }
