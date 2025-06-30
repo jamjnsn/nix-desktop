@@ -47,6 +47,8 @@ in
     fd # find alternative
     gomi # Trash CLI
 
+    python3
+
     fzf
     zoxide
     yt-dlp
