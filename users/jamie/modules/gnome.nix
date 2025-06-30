@@ -35,6 +35,14 @@ in
   services.flatpak.packages = [
   ];
 
+  home.pointerCursor = {
+    name = "WhiteSur-cursors";
+    package = pkgs.whitesur-cursors;
+    size = 24; # Adjust size as needed
+    gtk.enable = true;
+    x11.enable = true;
+  };
+
   gtk = {
     enable = true;
 
@@ -109,7 +117,7 @@ in
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         name = "Kitty Tdrop";
-        command = "/home/jamie/.local/bin/kitty-tdrop.sh";
+        command = "/home/jamie/.local/bin/kitty-tdrop";
         binding = "<Super>grave";
       };
 
