@@ -8,6 +8,10 @@ setopt PUSHD_SILENT         # Do not print the directory stack after pushd or po
 setopt CDABLE_VARS          # Change directory to a path stored in a variable.
 setopt EXTENDED_GLOB        # Use extended globbing syntax.
 
+# Passes literal string to command when no glob match
+# This allows use of special characters without quoting or disabling globbing
+setopt NO_NOMATCH
+
 # History
 setopt EXTENDED_HISTORY          # Write the history file in the ':start:elapsed;command' format.
 setopt SHARE_HISTORY             # Share history between all sessions.
