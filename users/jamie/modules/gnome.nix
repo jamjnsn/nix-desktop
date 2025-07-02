@@ -89,6 +89,11 @@ in
         enabled = true;
       };
 
+      # Disable notifications on the lockscreen
+      "org/gnome/desktop/notifications" = {
+        show-in-lock-screen = false;
+      };
+
       # Appearance
       "org/gnome/desktop/interface" = {
         gtk-theme = "Adwaita-dark";
