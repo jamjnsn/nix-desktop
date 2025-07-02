@@ -2,8 +2,6 @@
 # Add ZSH color support
 # ==================================================
 
-
-
 # ==================================================
 # Add ZSH color support
 # ==================================================
@@ -23,17 +21,7 @@ _prompt_cache_system_info() {
     else
         _PROMPT_IS_SSH=false
     fi
-    
-    # Get OS information
-    if [[ -f /etc/os-release ]]; then
-        source /etc/os-release
-        _PROMPT_OS="$NAME"
-    elif [[ "$OSTYPE" == darwin* ]]; then
-        _PROMPT_OS="macOS"
-    else
-        _PROMPT_OS="Unknown"
-    fi
-    
+
     # Cache hostname
     _PROMPT_HOST="$(hostname -s)"
 }
@@ -47,30 +35,30 @@ _prompt_cache_system_info
 _prompt_git_info() {
     # Exit if not in git repo
     git rev-parse --is-inside-work-tree &>/dev/null || return
-    
+
     local branch_name
     local git_status=""
     local git_color="green"
-    
+
     # Get current branch or commit hash
     branch_name="$(git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD 2>/dev/null)"
-    
+
     # Check for uncommitted changes
     if ! git diff --quiet 2>/dev/null; then
         git_color="yellow"
         git_status="*"
     fi
-    
+
     # Check for untracked files
     if [[ -n "$(git ls-files --others --exclude-standard 2>/dev/null)" ]]; then
         git_status="${git_status}+"
     fi
-    
+
     # Check for staged changes
     if ! git diff --cached --quiet 2>/dev/null; then
         git_status="${git_status}●"
     fi
-    
+
     # Output git info
     _draw_bubble yellow " ${branch_name}${git_status}%f"
 }
@@ -95,7 +83,7 @@ _prompt_user_host() {
     else
         prompt_char="%F{white}%f"
     fi
-    
+
     if [[ "$_PROMPT_IS_SSH" == "true" ]]; then
         echo "%f%n@%m ${prompt_char}"
     else
@@ -110,12 +98,12 @@ _prompt_user_host() {
 _prompt_directory() {
     local dir_color="%F{240}"
     local current_dir="%~"
-    
+
     # Color directory differently if not writable
     if [[ ! -w "$PWD" ]]; then
         dir_color="%F{red}"
     fi
-    
+
     echo "${dir_color}${current_dir}%f"
 }
 
@@ -140,25 +128,6 @@ _prompt_venv() {
 }
 
 # ==================================================
-# Execution Time Tracking
-# ==================================================
-
-_prompt_preexec() {
-    _PROMPT_EXEC_START=$(date +%s)
-}
-
-_prompt_exec_time() {
-    if [[ -n "$_PROMPT_EXEC_START" ]]; then
-        local exec_time=$(($(date +%s) - $_PROMPT_EXEC_START))
-        unset _PROMPT_EXEC_START
-        
-        if (( exec_time > 2 )); then
-            echo "%F{yellow}⏱ ${exec_time}s%f "
-        fi
-    fi
-}
-
-# ==================================================
 # Prompt Assembly
 # ==================================================
 
@@ -171,7 +140,7 @@ _draw_bubble() {
 
 _prompt_precmd() {
     # Add spacing before prompt
-    print
+    echo
 }
 
 _prompt_build() {
@@ -182,9 +151,9 @@ _prompt_build() {
     left_prompt+=$'\n'
     left_prompt+='$(_prompt_nix_shell)'
     left_prompt+='$(_prompt_user_host) '
-    
-    local right_prompt='$(_prompt_return_status) $(_prompt_exec_time)'
-    
+
+    local right_prompt='$(_prompt_return_status)'
+
     PROMPT="$left_prompt"
     RPROMPT="$right_prompt"
 }
@@ -195,7 +164,6 @@ _prompt_build() {
 
 # Set up hooks
 add-zsh-hook precmd _prompt_precmd
-add-zsh-hook preexec _prompt_preexec
 
 # Build and activate prompt
 _prompt_build
