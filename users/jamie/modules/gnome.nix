@@ -139,7 +139,7 @@ in
       "org/gnome/shell".disable-user-extensions = false;
       "org/gnome/shell".enabled-extensions = map (extension: extension.extensionUuid) gnomeExtensions;
       "org/gnome/shell/extensions/just-perfection" = {
-        animation = 4;
+        animation = 5;
         workspace-wrap-around = true;
       };
     };
