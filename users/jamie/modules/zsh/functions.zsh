@@ -60,3 +60,15 @@ function takeurl() {
 function mkcd takedir() {
     mkdir -p $@ && cd ${@:$#}
 }
+
+# Gomi with output
+gomi_verbose() {
+    for file in "$@"; do
+        if [[ -e "$file" ]]; then
+            echo "🗑️  $file"
+            gomi "$file"
+        else
+            echo "❌  $file"
+        fi
+    done
+}
