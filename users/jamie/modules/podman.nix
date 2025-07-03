@@ -4,9 +4,11 @@
     podman
     podman-compose
     podman-tui
+    pods
     dive
   ];
 
+  # Enable docker.io as a search registry
   home.file.".config/containers/registries.conf".text = ''
     [registries.search]
     registries = ['docker.io']
