@@ -1,6 +1,6 @@
 # Shortcuts
 alias root="sudo -i"
-alias ytdld="yt-dlp -P ~/Downloads"
+alias ytdl="yt-dlp -P ~/Downloads"
 
 # Default args
 alias mv="mv -iv"
