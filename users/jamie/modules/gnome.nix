@@ -126,7 +126,7 @@ in
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
         name = "Emoji Picker";
-        command = "{pkgs.smile}/bin/smile";
+        command = "${pkgs.smile}/bin/smile";
         binding = "<Super>period";
       };
 
