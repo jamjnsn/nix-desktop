@@ -24,12 +24,14 @@ let
     wtmb-window-thumbnails # OnTopReplica
     dash-to-dock
     smile-complementary-extension # For automatic emoji pasting
+    tiling-shell
   ];
 in
 {
   home.packages =
     (with pkgs; [
       gnome-tweaks
+      adw-gtk3
     ])
     ++ gnomeExtensions;
 
@@ -44,6 +46,11 @@ in
   gtk = {
     enable = true;
 
+    theme = {
+      name = "adw-gtk3-dark";
+      package = pkgs.adw-gtk3;
+    };
+
     iconTheme = {
       name = "WhiteSur-dark";
       package = whitesurIconTheme;
@@ -54,6 +61,8 @@ in
       size = 11;
     };
   };
+
+  xdg.configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;
 
   dconf = {
     enable = true;
@@ -78,9 +87,13 @@ in
         show-in-lock-screen = false;
       };
 
+      # Disable alert on first launch
+      "org/gnome/tweaks" = {
+        show-extensions-notice = false;
+      };
+
       # Appearance
       "org/gnome/desktop/interface" = {
-        gtk-theme = "Adwaita-dark";
         color-scheme = "prefer-dark";
         show-battery-percentage = "true";
       };
@@ -129,9 +142,26 @@ in
       # Extensions
       "org/gnome/shell".disable-user-extensions = false;
       "org/gnome/shell".enabled-extensions = map (extension: extension.extensionUuid) gnomeExtensions;
+
       "org/gnome/shell/extensions/just-perfection" = {
         animation = 5;
         workspace-wrap-around = true;
+        startup-status = 0; # 0 - Desktop, 1 - Overview
+        window-demands-attention-focus = true; # Switch to window instead of displaying "window is ready"
+      };
+
+      "org/gnome/shell/extensions/tilingshell" = {
+        enable-blur-selected-tilepreview = true;
+        enable-blur-snap-assistant = true;
+        enable-move-keybindings = false;
+        inner-gaps = 0;
+        outer-gaps = 0;
+        overridden-settings = ''{"org.gnome.mutter":{"edge-tiling":"true"}}'';
+        show-indicator = true;
+      };
+
+      "org/gnome/shell/extensions/caffeine" = {
+        show-notifications = false;
       };
     };
   };
