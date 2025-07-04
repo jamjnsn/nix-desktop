@@ -63,6 +63,14 @@
                       ];
                     };
 
+                    "/ollama-models" = {
+                      mountpoint = "/var/lib/ollama/models";
+                      mountOptions = [
+                        "compress=zstd"
+                        "noatime"
+                      ];
+                    };
+
                     "/swap" = {
                       mountpoint = "/.swap";
                       swap.swapfile.size = "2G";

@@ -10,6 +10,7 @@
   imports = [
     ./disk-config.nix
     ./modules/gnome.nix
+    ./modules/ollama.nix
   ];
 
   # Enable flakes

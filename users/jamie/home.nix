@@ -56,6 +56,8 @@ in
 
     samba
 
+    alpaca # AI chat client
+
     # Network utilities
     traceroute
     dig # Also contains nslookup
