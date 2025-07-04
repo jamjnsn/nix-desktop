@@ -37,3 +37,7 @@ This configuration can be installed to a remote machine using `nixos-anywhere`.
 ### dconf
 
 Using dconf2nix, you can create a .nix file to reproduce your current dconf settings. Presently, it's preferred to add specific settings to users/modules/dconf.nix.
+
+### Disk Layout (including BTRFS subvolumes)
+
+Any changes to disk layout, including the addition of new BTRFS subvolumes, will need to be manually applied to the system. The changes should be added to disko configuration for future reinstallation.
