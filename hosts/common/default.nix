@@ -9,7 +9,7 @@
 {
   imports = [
     ./disk-config.nix
-    ./programs/gnome.nix
+    ./modules/gnome.nix
   ];
 
   # Enable flakes
