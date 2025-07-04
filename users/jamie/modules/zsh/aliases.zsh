@@ -11,9 +11,6 @@ alias du="du -h"
 alias df="df -h"
 alias diff="diff --color"
 
-# Replacements
-alias rm="gomi_verbose"
-
 # Colorize
 alias ping="grc \\ping"
 

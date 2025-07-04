@@ -45,7 +45,6 @@ in
   home.packages = with pkgs; [
     bat # cat alternative
     fd # find alternative
-    gomi # Trash CLI
 
     python3
 
