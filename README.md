@@ -2,10 +2,6 @@
 
 Nix config for my personal computers. This is currently designed for a single user configuration.
 
-## Secrets
-
-Secrets are managed with `sops-nix`. Ensure the private key is located at `~/.config/sops/age/keys.txt`.
-
 ## Installation
 
 This configuration can be installed to a remote machine using `nixos-anywhere`.
