@@ -57,6 +57,7 @@ in
     samba
 
     alpaca # AI chat client
+    smile # Emoji picker
 
     # Network utilities
     traceroute

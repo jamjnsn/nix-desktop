@@ -23,6 +23,7 @@ let
     pip-on-top # Allows PiP from Firefox to work in Wayland
     wtmb-window-thumbnails # OnTopReplica
     dash-to-dock
+    smile-complementary-extension # For automatic emoji pasting
   ];
 in
 {
@@ -31,9 +32,6 @@ in
       gnome-tweaks
     ])
     ++ gnomeExtensions;
-
-  services.flatpak.packages = [
-  ];
 
   home.pointerCursor = {
     name = "WhiteSur-cursors";
@@ -46,11 +44,6 @@ in
   gtk = {
     enable = true;
 
-    theme = {
-      name = "Adwaita-dark";
-      package = pkgs.gnome-themes-extra;
-    };
-
     iconTheme = {
       name = "WhiteSur-dark";
       package = whitesurIconTheme;
@@ -59,15 +52,6 @@ in
     font = {
       name = "Cantarell";
       size = 11;
-    };
-  };
-
-  qt = {
-    enable = true;
-    platformTheme.name = "Adwaita-dark";
-    style = {
-      name = "Adwaita-dark";
-      package = pkgs.adwaita-qt;
     };
   };
 
@@ -117,13 +101,20 @@ in
       "org/gnome/settings-daemon/plugins/media-keys" = {
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
         ];
       };
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
-        name = "Kitty Tdrop";
+        name = "Terminal Dropdown";
         command = "/home/jamie/.local/bin/kitty-tdrop";
         binding = "<Super>grave";
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
+        name = "Emoji Picker";
+        command = "{pkgs.smile}/bin/smile";
+        binding = "<Super>period";
       };
 
       # Power settings
