@@ -5,6 +5,17 @@
   ...
 }:
 {
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+
+    config = {
+      common.default = [ "gtk" ];
+    };
+
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.desktopManager.gnome.enable = true;

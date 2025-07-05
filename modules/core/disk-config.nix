@@ -1,3 +1,4 @@
+# TODO: Find another way to define rootdisk so this can be included in core modules
 # See: https://github.com/nix-community/disko/blob/master/example/zfs-encrypted-root.nix
 
 { rootDisk, ... }:

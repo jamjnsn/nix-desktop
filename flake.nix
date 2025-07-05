@@ -45,8 +45,6 @@
             # Declarative Flatpak
             nix-flatpak.nixosModules.nix-flatpak
 
-            # Base configuration
-            ./hosts/common
             ./hosts/${hostname}
 
             home-manager.nixosModules.home-manager

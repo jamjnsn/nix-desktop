@@ -2,24 +2,21 @@
   config,
   lib,
   pkgs,
+  rootDisk,
   ...
 }:
-let
-  rootDisk = "/dev/disk/by-id/nvme-CT2000P3SSD8_2311E6BBF76F";
-in
 {
   networking.hostName = "desky";
   networking.hostId = "3e7b3b0b";
-  boot.initrd.luks.devices.root.device = rootDisk;
+
+  _module.args.rootDisk = "/dev/disk/by-id/nvme-CT2000P3SSD8_2311E6BBF76F";
 
   imports = [
-    (import ../common/disk-config.nix {
-      inherit lib;
-      inherit rootDisk;
-    })
-
     ./hardware-configuration.nix
+    ../../modules/core
   ];
+
+  boot.initrd.luks.devices.root.device = rootDisk;
 
   # Dual boot
   boot.loader.systemd-boot.windows = {
