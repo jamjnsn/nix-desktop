@@ -1,0 +1,77 @@
+#!/usr/bin/env bash
+set -eu
+
+draw_divider() {
+    printf "%$(tput cols)s\n" | tr ' ' '-'
+}
+
+draw_header() {
+    local text="$1"
+    local text_width=${#text}
+    local box_width=$((text_width + 2))
+
+    # Top border
+    printf "╭"
+    printf "─%.0s" $(seq 1 $box_width)
+    printf "╮\n"
+
+    # Middle with text
+    printf "│ %s │\n" "$text"
+
+    # Bottom border
+    printf "╰"
+    printf "─%.0s" $(seq 1 $box_width)
+    printf "╯\n"
+}
+
+show_help() {
+    echo "no elp"
+}
+
+# Just an alias for now
+cmd_try() {
+    nix-shell -p "$@"
+}
+
+# Just an alias for now
+cmd_update() {
+    draw_header "❄️  Updating Nix packages"
+    sudo nix-channel --update
+
+    draw_header "📦️  Updating Flatpaks"
+    flatpak update
+}
+
+cmd_rebuild() {
+    draw_header "❄️  Rebuilding NixOS system"
+    (
+        cd ~/.nixos
+        git add -N . # Track new files
+        nh os switch .
+    )
+}
+
+main() {
+    local command="$1"
+    shift
+
+    case $command in
+    try)
+        cmd_try "$@"
+        ;;
+    update)
+        cmd_update
+        ;;
+    rebuild)
+        cmd_rebuild
+        ;;
+    help)
+        show_help
+        ;;
+    *)
+        echo "Unknown command: $command. Use 'nyx help' for usage information."
+        ;;
+    esac
+}
+
+main "$@"
