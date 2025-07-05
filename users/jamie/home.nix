@@ -68,12 +68,15 @@ in
   ];
 
   # Add .local/bin to PATH
-  home.sessionPath = [ "$HOME/.local/bin" ];
+  home.sessionVariables = {
+    PATH = "$HOME/.local/bin:$PATH";
+  };
 
   # Add scripts folder
   home.file.".local/bin" = {
     source = ./scripts;
     recursive = true;
+    executable = true;
   };
 
   # NixOS version

@@ -120,7 +120,7 @@ in
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0" = {
         name = "Terminal Dropdown";
-        command = "/home/jamie/.local/bin/kitty-tdrop";
+        command = "kitty-tdrop";
         binding = "<Super>grave";
       };
 
