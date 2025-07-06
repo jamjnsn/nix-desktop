@@ -3,6 +3,8 @@
   # Enable flakes
   nix = {
     settings = {
+      allowed-users = [ "@wheel" ];
+
       download-buffer-size = 524288000; # 500 MiB (in bytes)
       auto-optimise-store = true;
       experimental-features = [

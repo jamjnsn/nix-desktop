@@ -1,7 +1,7 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 {
+  imports = [ inputs.home-manager.nixosModules.home-manager ];
 
-  # Create admin user with default password
   users.mutableUsers = false; # Disable password changes
 
   users.users.jamie = {
@@ -19,5 +19,19 @@
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICG/Ktp96ldlqZwoH4dGQl6uBLBF3i8xLbnF4PAS+gJx jamie@desky" # WSL
       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAICwFbe6YCNc/WHQRnCsrZu6NH8ny585VBrRzMJpB/mmW jamie@lappy"
     ];
+  };
+
+  home-manager = {
+    useUserPackages = true;
+    useGlobalPkgs = true;
+    extraSpecialArgs = { inherit inputs; };
+
+    users.jamie = {
+      imports = [ ../users/jamie ];
+      home.username = "jamie";
+      home.homeDirectory = "/home/jamie";
+      home.stateVersion = "25.05";
+      programs.home-manager.enable = true;
+    };
   };
 }

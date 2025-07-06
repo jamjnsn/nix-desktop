@@ -67,31 +67,6 @@
     };
   };
 
-  # Flatpak
-  services.flatpak = {
-    enable = true;
-    overrides = {
-      global = {
-        Environment = {
-          GTK_THEME = "Adwaita:dark";
-        };
-      };
-    };
-  };
-
-  services.flatpak.update.auto = {
-    enable = true;
-    onCalendar = "daily";
-  };
-
-  systemd.services.flatpak-repo = {
-    wantedBy = [ "multi-user.target" ];
-    path = [ pkgs.flatpak ];
-    script = ''
-      flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
-    '';
-  };
-
   # Programs
   programs.zsh.enable = true;
   programs.firefox.enable = true;

@@ -1,12 +1,12 @@
 {
   config,
   pkgs,
-  flake-inputs,
+  inputs,
   ...
 }:
 {
   imports = [
-    flake-inputs.vscode-server.homeModules.default
+    inputs.vscode-server.homeModules.default
   ];
 
   # Allows reading .envrc to load environment variables

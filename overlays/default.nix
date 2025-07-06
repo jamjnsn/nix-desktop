@@ -1,3 +1,0 @@
-[
-  (import ./product-sans.nix)
-]

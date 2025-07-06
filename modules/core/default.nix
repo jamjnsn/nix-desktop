@@ -8,6 +8,7 @@
     ./system.nix
     ./users.nix
     ./desktop.nix
+    ./flatpak.nix
     ./ollama.nix
   ];
 }

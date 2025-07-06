@@ -24,14 +24,16 @@
       ...
     }@inputs:
     let
+      pkgs = import nixpkgs {
+        config.allowUnfree = true;
+      };
+
       # Define hosts and users
       hosts = [
         "desky"
         "lappy"
       ];
-      users = [ "jamie" ];
 
-      # TODO: Maybe move this function to a lib?
       mkHost = hostname: {
         name = hostname;
 
@@ -39,29 +41,12 @@
           system = "x86_64-linux";
 
           modules = [
-            # Disk configuration
-            disko.nixosModules.disko
-
-            # Declarative Flatpak
-            nix-flatpak.nixosModules.nix-flatpak
-
             ./hosts/${hostname}
-
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = false;
-              home-manager.useUserPackages = true;
-
-              home-manager.users = builtins.listToAttrs (
-                map (name: {
-                  name = name;
-                  value = import (./users + "/${name}/home.nix");
-                }) users
-              );
-
-              home-manager.extraSpecialArgs.flake-inputs = inputs;
-            }
           ];
+
+          specialArgs = {
+            inherit self inputs;
+          };
         };
       };
     in
