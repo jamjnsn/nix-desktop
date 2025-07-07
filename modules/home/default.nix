@@ -8,6 +8,7 @@
     ./eza.nix
     ./firefox.nix
     ./fonts.nix
+    ./fzf.nix
     ./gaming.nix
     ./gnome.nix
     ./gomi.nix
