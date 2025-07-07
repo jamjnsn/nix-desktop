@@ -10,8 +10,6 @@ in
       id = 0;
       isDefault = true;
 
-      # extensions.packages = [];
-
       userChrome = ''
         @import url("firefox-gnome-theme/userChrome.css");
       '';
