@@ -1,4 +1,4 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
   programs.zsh = {
     enable = true;
@@ -10,12 +10,14 @@
       enable = true;
     };
 
-    sessionVariables = {
+    plugins = [
+      {
+        name = "fzf-tab";
+        src = "${pkgs.zsh-fzf-tab}/share/fzf-tab";
+      }
+    ];
 
-    };
-
-    shellAliases = {
-    };
+    sessionVariables = { };
 
     history.size = 10000;
     history.ignorePatterns = [
