@@ -7,4 +7,6 @@
     pulse.enable = true;
     jack.enable = true;
   };
+
+  hardware.alsa.enablePersistence = true;
 }
