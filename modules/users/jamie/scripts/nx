@@ -69,7 +69,7 @@ main() {
         show_help
         ;;
     *)
-        echo "Unknown command: $command. Use 'nyx help' for usage information."
+        echo "Unknown command: $command. Use 'nx help' for usage information."
         ;;
     esac
 }
