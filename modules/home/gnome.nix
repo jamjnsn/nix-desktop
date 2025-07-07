@@ -146,6 +146,12 @@ in
         idle-delay = lib.hm.gvariant.mkUint32 900;
       };
 
+      # Automatically connect to system qemu in virt-manager
+      "org/virt-manager/virt-manager/connections" = {
+        autoconnect = [ "qemu:///system" ];
+        uris = [ "qemu:///system" ];
+      };
+
       # Extensions
       "org/gnome/shell".disable-user-extensions = false;
       "org/gnome/shell".enabled-extensions = map (extension: extension.extensionUuid) gnomeExtensions;
