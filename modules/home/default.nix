@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./packages
     ./zsh
     ./dev.nix
     ./distrobox.nix
@@ -16,6 +17,7 @@
     ./podman.nix
     ./tealdeer.nix
     ./tmux.nix
+    ./yt-dlp.nix
     ./zoxide.nix
   ];
 }
