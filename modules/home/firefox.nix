@@ -1,4 +1,4 @@
-{ pkgs, inputs, ... }:
+{ pkgs, ... }:
 let
   userId = builtins.toString (builtins.getEnv "UID");
 in
@@ -10,7 +10,7 @@ in
       id = 0;
       isDefault = true;
 
-      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+      extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
         ublock-origin
         bitwarden
       ];

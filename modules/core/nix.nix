@@ -1,4 +1,4 @@
-{ ... }:
+{ inputs, ... }:
 {
   # Enable flakes
   nix = {
@@ -7,6 +7,7 @@
 
       download-buffer-size = 524288000; # 500 MiB (in bytes)
       auto-optimise-store = true;
+
       experimental-features = [
         "nix-command"
         "flakes"
@@ -39,5 +40,9 @@
   };
 
   # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+
+    overlays = [ inputs.nur.overlays.default ];
+  };
 }
