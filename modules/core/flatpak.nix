@@ -5,20 +5,14 @@
   services.flatpak = {
     enable = true;
 
-    overrides = {
-      global = {
-        Environment = {
-          GTK_THEME = "Adwaita:dark";
-        };
-
-        # Force Wayland by default
-        Context.sockets = [
-          "wayland"
-          "!x11"
-          "!fallback-x11"
-        ];
-      };
-    };
+    packages = [
+      "com.discordapp.Discord"
+      "com.spotify.Client"
+      "md.obsidian.Obsidian"
+      "org.gnome.World.PikaBackup"
+      "com.github.tchx84.Flatseal"
+      "it.mijorus.smile"
+    ];
 
     update.auto = {
       enable = true;

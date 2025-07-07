@@ -14,17 +14,6 @@
   # Fonts
   fonts.fontconfig.enable = true;
 
-  # Flatpaks
-  services.flatpak.enable = true;
-  services.flatpak.packages = [
-    "com.discordapp.Discord"
-    "com.spotify.Client"
-    "md.obsidian.Obsidian"
-    "org.gnome.World.PikaBackup"
-    "md.obsidian.Obsidian.desktop"
-    "com.github.tchx84.Flatseal"
-  ];
-
   # Packages
   home.packages = with pkgs; [
     bat # cat alternative
@@ -40,14 +29,12 @@
     samba
 
     alpaca # AI chat client
-    smile # Emoji picker
 
     # Network utilities
     traceroute
     dig # Also contains nslookup
 
-    # Fonts
-    nerd-fonts.jetbrains-mono
+    resources # System Monitor alternative
   ];
 
   # Add .local/bin to PATH

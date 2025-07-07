@@ -115,6 +115,7 @@ in
         custom-keybindings = [
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/"
           "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1/"
+          "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2/"
         ];
       };
 
@@ -126,8 +127,14 @@ in
 
       "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom1" = {
         name = "Emoji Picker";
-        command = "${pkgs.smile}/bin/smile";
+        command = "flatpak run it.mijorus.smile";
         binding = "<Super>period";
+      };
+
+      "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom2" = {
+        name = "Resource Monitor";
+        command = "${pkgs.resources}/bin/resources";
+        binding = "<Control><Shift>Escape";
       };
 
       # Power settings
