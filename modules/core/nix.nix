@@ -15,12 +15,15 @@
       # NixOS binary cache
       substituters = [
         "https://cache.nixos.org/"
+        "https://nix-community.cachix.org"
       ];
 
       # Public keys for pushing builds
       trusted-public-keys = [
-        "desky:WnCW8C/gDmA7lqW3uzAW3Bw7qvW0hTX3NepWifDJybY=%" # Desky WSL
         "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=" # NixOS binary cache
+        "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs=" # Cachix binary cache
+
+        "desky:WnCW8C/gDmA7lqW3uzAW3Bw7qvW0hTX3NepWifDJybY=%" # Desky WSL
       ];
 
       # Faster rebuild
