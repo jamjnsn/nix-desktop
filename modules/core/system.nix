@@ -69,7 +69,6 @@
 
   # Programs
   programs.zsh.enable = true;
-  programs.firefox.enable = true;
   virtualisation.waydroid.enable = true;
   programs.adb.enable = true;
 

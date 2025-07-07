@@ -5,6 +5,7 @@
     ./dev.nix
     ./distrobox.nix
     ./eza.nix
+    ./firefox.nix
     ./fonts.nix
     ./gaming.nix
     ./gnome.nix
