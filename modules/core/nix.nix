@@ -1,5 +1,9 @@
 { ... }:
 {
+  # Allow running unpatched dynamic binaries
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [ ];
+
   # Enable flakes
   nix = {
     settings = {
