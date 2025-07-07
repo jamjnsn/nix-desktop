@@ -15,8 +15,16 @@
     # Firewall
     firewall = {
       enable = true;
-      allowedTCPPorts = [ ];
-      allowedUDPPorts = [ ];
+      allowedTCPPorts = [
+        # Tailscale
+        59010
+        59011
+      ];
+      allowedUDPPorts = [
+        # Tailscale
+        59010
+        59011
+      ];
     };
   };
 }
