@@ -152,6 +152,13 @@ in
         uris = [ "qemu:///system" ];
       };
 
+      # Text editor
+      "org/gnome/TextEditor" = {
+        highlight-current-line = true;
+        show-line-numbers = true;
+        restore-session = false;
+      };
+
       # Extensions
       "org/gnome/shell".disable-user-extensions = false;
       "org/gnome/shell".enabled-extensions = map (extension: extension.extensionUuid) gnomeExtensions;
