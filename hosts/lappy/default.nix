@@ -32,8 +32,6 @@
   services.xserver.videoDrivers = [ "intel" ];
 
   hardware.graphics = {
-    enable = true;
-
     extraPackages = with pkgs; [
       intel-media-driver # For Broadwell and newer CPUs
       intel-vaapi-driver # For older Intel GPUs or for compatibility with some apps
