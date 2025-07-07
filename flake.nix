@@ -12,6 +12,11 @@
 
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     vscode-server.url = "github:nix-community/nixos-vscode-server";
+
+    firefox-addons = {
+      url = "gitlab:rycee/nur-expressions?dir=pkgs/firefox-addons";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

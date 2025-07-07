@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 let
   userId = builtins.toString (builtins.getEnv "UID");
 in
@@ -9,6 +9,11 @@ in
     profiles.default = {
       id = 0;
       isDefault = true;
+
+      extensions.packages = with inputs.firefox-addons.packages.${pkgs.system}; [
+        ublock-origin
+        bitwarden
+      ];
 
       userChrome = ''
         @import url("firefox-gnome-theme/userChrome.css");
