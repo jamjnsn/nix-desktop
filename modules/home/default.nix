@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./gnome
     ./packages
     ./zsh
     ./dev.nix
@@ -10,7 +11,6 @@
     ./fonts.nix
     ./fzf.nix
     ./gaming.nix
-    ./gnome.nix
     ./gomi.nix
     ./kitty.nix
     ./mcfly.nix
