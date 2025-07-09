@@ -4,21 +4,14 @@
   pkgs,
   inputs,
   disko,
-  rootDisk,
+  host,
   ...
 }:
 {
-  networking.hostName = "lappy";
-  networking.hostId = "3e7b3b0a";
-
-  _module.args.rootDisk = "/dev/disk/by-id/nvme-LENSE30256GMSP34MEAT3TA_1304720404575";
-
   imports = [
     ./hardware-configuration.nix
     ../../modules/core
   ];
-
-  boot.initrd.luks.devices.root.device = rootDisk;
 
   # Graphics
   boot.initrd.kernelModules = [ "i915" ];

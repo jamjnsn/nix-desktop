@@ -1,9 +1,12 @@
-{ ... }:
+{ host, ... }:
 {
   services.avahi.enable = true;
   services.tailscale.enable = true;
 
   networking = {
+    hostId = host.id;
+    hostName = host.name;
+
     networkmanager.enable = true;
 
     nameservers = [

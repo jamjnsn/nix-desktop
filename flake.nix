@@ -30,24 +30,32 @@
         config.allowUnfree = true;
       };
 
-      # Define hosts and users
+      # Define hosts
       hosts = [
-        "desky"
-        "lappy"
+        {
+          name = "desky";
+          id = "3e7b3b0b";
+          rootDisk = "/dev/disk/by-id/nvme-CT2000P3SSD8_2311E6BBF76F";
+        }
+        {
+          name = "lappy";
+          id = "3e7b3b0a";
+          rootDisk = "/dev/disk/by-id/nvme-LENSE30256GMSP34MEAT3TA_1304720404575";
+        }
       ];
 
-      mkHost = hostname: {
-        name = hostname;
+      mkHost = host: {
+        name = host.name;
 
         value = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
 
           modules = [
-            ./hosts/${hostname}
+            ./hosts/${host.name}
           ];
 
           specialArgs = {
-            inherit self inputs;
+            inherit self inputs host;
           };
         };
       };

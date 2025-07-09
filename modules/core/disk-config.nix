@@ -1,7 +1,7 @@
 # TODO: Find another way to define rootdisk so this can be included in core modules
 # See: https://github.com/nix-community/disko/blob/master/example/zfs-encrypted-root.nix
 
-{ inputs, rootDisk, ... }:
+{ inputs, host, ... }:
 {
   imports = [ inputs.disko.nixosModules.disko ];
 
@@ -9,7 +9,7 @@
     disk = {
       main = {
         type = "disk";
-        device = rootDisk;
+        device = host.rootDisk;
         content = {
           type = "gpt";
 

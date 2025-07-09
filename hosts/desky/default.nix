@@ -2,21 +2,14 @@
   config,
   lib,
   pkgs,
-  rootDisk,
+  host,
   ...
 }:
 {
-  networking.hostName = "desky";
-  networking.hostId = "3e7b3b0b";
-
-  _module.args.rootDisk = "/dev/disk/by-id/nvme-CT2000P3SSD8_2311E6BBF76F";
-
   imports = [
     ./hardware-configuration.nix
     ../../modules/core
   ];
-
-  boot.initrd.luks.devices.root.device = rootDisk;
 
   # Dual boot
   boot.loader.systemd-boot.windows = {

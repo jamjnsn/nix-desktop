@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, host, ... }:
 {
   # TPM
   security.tpm2.enable = true;
@@ -15,6 +15,9 @@
         configurationLimit = 10;
       };
     };
+
+    # Set root disk for LUKS
+    initrd.luks.devices.root.device = host.rootDisk;
 
     # Enable "Silent boot"
     consoleLogLevel = 3;
