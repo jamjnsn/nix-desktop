@@ -5,6 +5,7 @@
     htop
     jq
     samba
+    grc # colorizer
 
     # Alternatives
     ncdu
