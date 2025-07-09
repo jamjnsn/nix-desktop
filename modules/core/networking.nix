@@ -9,6 +9,18 @@
 
     networkmanager.enable = true;
 
+    bridges = {
+      br0 = {
+        interfaces = host.bridgeInterfaces;
+      };
+    };
+
+    interfaces = {
+      br0 = {
+        useDHCP = true;
+      };
+    };
+
     nameservers = [
       # Quad9
       "9.9.9.9"

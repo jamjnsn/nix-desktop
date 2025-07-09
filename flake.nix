@@ -36,11 +36,13 @@
           name = "desky";
           id = "3e7b3b0b";
           rootDisk = "/dev/disk/by-id/nvme-CT2000P3SSD8_2311E6BBF76F";
+          bridgeInterfaces = [ "enp42s0" ];
         }
         {
           name = "lappy";
           id = "3e7b3b0a";
           rootDisk = "/dev/disk/by-id/nvme-LENSE30256GMSP34MEAT3TA_1304720404575";
+          bridgeInterfaces = [ "enp0s31f6" ];
         }
       ];
 
