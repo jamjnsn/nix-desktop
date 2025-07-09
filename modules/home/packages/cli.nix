@@ -19,5 +19,8 @@
     traceroute
     dig
     gping
+
+    # TUIs
+    yazi # File manager
   ];
 }
