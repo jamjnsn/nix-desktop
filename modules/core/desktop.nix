@@ -5,6 +5,8 @@
   ...
 }:
 {
+  fonts.fontconfig.enable = true; 
+
   xdg.portal = {
     enable = true;
     xdgOpenUsePortal = true;
@@ -27,7 +29,7 @@
     seahorse # Password manager
     gnome-terminal
   ];
-
+  
   environment.systemPackages = with pkgs; [
     gnome-software
   ];
