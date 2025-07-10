@@ -1,6 +1,5 @@
-{ pkgs, ... }:
+{ config, pkgs, ... }:
 {
-
   # Nix CLI tool
   programs.nh = {
     enable = true;
