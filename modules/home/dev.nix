@@ -17,6 +17,7 @@
   # Development tools
   home.packages = with pkgs; [
     python3
+    ansible
   ];
 
   # VScode
