@@ -1,4 +1,8 @@
 {
+  programs.zsh.shellAliases = {
+    ssh = "kitten ssh";
+  };
+
   programs.kitty = {
     enable = true;
     settings = {
