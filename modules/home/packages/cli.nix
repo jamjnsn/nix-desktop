@@ -6,6 +6,7 @@
     jq
     samba
     grc # colorizer
+    wl-clipboard
 
     # Alternatives
     ncdu
