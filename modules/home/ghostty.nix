@@ -3,6 +3,10 @@ let
   splitResizeAmount = "20";
 in
 {
+  programs.zsh.shellAliases = {
+    ssh = "TERM=xterm-256color ssh";
+  };
+
   programs.ghostty = {
     enable = true;
     settings = {
