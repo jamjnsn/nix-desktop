@@ -12,7 +12,7 @@
       "com.spotify.Client.desktop"
       "com.discordapp.Discord.desktop"
       "md.obsidian.Obsidian.desktop"
-      "kitty.desktop"
+      "com.mitchellh.ghostty.desktop"
       "code.desktop"
       "org.gnome.Nautilus.desktop"
     ];

@@ -11,8 +11,9 @@
     ./fonts.nix
     ./fzf.nix
     ./gaming.nix
+    ./ghostty.nix
     ./gomi.nix
-    ./kitty.nix
+    # ./kitty.nix
     ./mcfly.nix
     ./micro.nix
     ./nix.nix
