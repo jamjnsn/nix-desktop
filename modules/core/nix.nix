@@ -1,9 +1,15 @@
-{ inputs, ... }:
+{
+  config,
+  inputs,
+  pkgs,
+  ...
+}:
 {
   # Enable flakes
   nix = {
     settings = {
       allowed-users = [ "@wheel" ];
+      secret-key-files = [ "/etc/nix/private-key" ];
 
       download-buffer-size = 524288000; # 500 MiB (in bytes)
       auto-optimise-store = true;
@@ -44,5 +50,16 @@
     config.allowUnfree = true;
 
     overlays = [ inputs.nur.overlays.default ];
+  };
+
+  # Automatically generate a cache key if one doesn't exist
+  systemd.services.generate-nix-cache-key = {
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig.Type = "oneshot";
+    path = [ pkgs.nix ];
+    script = ''
+      [[ -f /etc/nix/private-key ]] && exit
+      nix-store --generate-binary-cache-key ${config.networking.hostName} /etc/nix/private-key /etc/nix/public-key
+    '';
   };
 }
