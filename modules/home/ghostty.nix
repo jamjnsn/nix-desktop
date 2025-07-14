@@ -10,7 +10,6 @@ in
       copy-on-select = "clipboard";
       app-notifications = "no-clipboard-copy";
       initial-command = "";
-      quick-terminal = true;
 
       # Font
       font-size = "13";
