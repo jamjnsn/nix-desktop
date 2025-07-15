@@ -18,6 +18,7 @@
   home.packages = with pkgs; [
     python3
     ansible
+    ansible-lint
     just
   ];
 
