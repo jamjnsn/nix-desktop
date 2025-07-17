@@ -1,6 +1,11 @@
 { pkgs, ... }:
 {
   dconf.settings = {
+    # Bind caps lock to hyper
+    "org/gnome/desktop/input-sources" = {
+      xkb-options = [ "caps:hyper" ];
+    };
+
     "org/gnome/desktop/wm/keybindings" = {
       switch-applications = [ ];
       switch-applications-backward = [ ];
@@ -38,7 +43,7 @@
     "org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom3" = {
       name = "Terminal";
       command = "${pkgs.ghostty}/bin/ghostty";
-      binding = "<Super>t";
+      binding = "<Hyper>t";
     };
   };
 }
