@@ -9,11 +9,11 @@ let
     tailscale-qs
     appindicator # Tray icons
     just-perfection
+    paperwm
     pip-on-top # Allows PiP from Firefox to work in Wayland
     wtmb-window-thumbnails # OnTopReplica
     dash-to-dock
     smile-complementary-extension # For automatic emoji pasting
-    tiling-shell
   ];
 in
 {
@@ -30,15 +30,15 @@ in
       window-demands-attention-focus = true; # Switch to window instead of displaying "window is ready"
     };
 
-    "org/gnome/shell/extensions/tilingshell" = {
-      enable-blur-selected-tilepreview = true;
-      enable-blur-snap-assistant = true;
-      enable-move-keybindings = false;
-      inner-gaps = 0;
-      outer-gaps = 0;
-      overridden-settings = ''{"org.gnome.mutter":{"edge-tiling":"true"}}'';
-      show-indicator = true;
-    };
+    # "org/gnome/shell/extensions/tilingshell" = {
+    #   enable-blur-selected-tilepreview = true;
+    #   enable-blur-snap-assistant = true;
+    #   enable-move-keybindings = false;
+    #   inner-gaps = 0;
+    #   outer-gaps = 0;
+    #   overridden-settings = ''{"org.gnome.mutter":{"edge-tiling":"true"}}'';
+    #   show-indicator = true;
+    # };
 
     "org/gnome/shell/extensions/caffeine" = {
       show-notifications = false;
