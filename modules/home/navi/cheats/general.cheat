@@ -1,0 +1,2 @@
+# Make a base64 encoded secret
+openssl rand -base64 32
