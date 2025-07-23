@@ -20,6 +20,7 @@
     ansible
     ansible-lint
     just
+    openssl
   ];
 
   # VScode
