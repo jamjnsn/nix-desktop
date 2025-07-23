@@ -3,6 +3,10 @@ let
   userId = builtins.toString (builtins.getEnv "UID");
 in
 {
+  home.packages = with pkgs; [
+    chrome-gnome-shell
+  ];
+
   programs.firefox = {
     enable = true;
 
