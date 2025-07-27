@@ -36,7 +36,11 @@ cmd_try() {
 # Just an alias for now
 cmd_update() {
     draw_header "❄️  Updating Nix packages"
-    sudo nix-channel --update
+    (
+        cd ~/.nixos
+        git add -N . # Track new files
+        nh os switch --update -- --cores 0 # Use all cores for update
+    )
 
     draw_header "📦️  Updating Flatpaks"
     flatpak update
