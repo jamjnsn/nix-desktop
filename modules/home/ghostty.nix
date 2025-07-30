@@ -59,6 +59,8 @@ in
       ];
 
       keybind = [
+        "alt+z=toggle_split_zoom"
+
         # Split navigation with Alt + arrow keys
         "alt+left=goto_split:left"
         "alt+right=goto_split:right"
