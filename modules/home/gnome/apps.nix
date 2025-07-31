@@ -8,7 +8,7 @@
   dconf.settings = {
     # Favorites
     "org/gnome/shell".favorite-apps = [
-      "firefox.desktop"
+      "app.zen_browser.zen.desktop"
       "com.spotify.Client.desktop"
       "com.discordapp.Discord.desktop"
       "md.obsidian.Obsidian.desktop"

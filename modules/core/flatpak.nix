@@ -16,6 +16,7 @@
       "io.github.celluloid_player.Celluloid"
       "com.obsproject.Studio"
       "org.libreoffice.LibreOffice"
+      "app.zen_browser.zen"
     ];
 
     update.auto = {
