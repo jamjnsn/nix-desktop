@@ -21,3 +21,6 @@ alias nsh="nix-shell --packages"
 
 # Update Nix packages
 alias update="sudo nix-channel --update"
+
+# For some reason `agenix-cli` doesn't work but this does:
+alias agenix="nix run github:ryantm/agenix --"
