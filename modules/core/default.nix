@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./agenix.nix
     ./boot.nix
     ./desktop.nix
     ./disk-config.nix

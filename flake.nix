@@ -14,6 +14,8 @@
     vscode-server.url = "github:nix-community/nixos-vscode-server";
 
     nur.url = "github:nix-community/NUR";
+
+    agenix.url = "github:ryantm/agenix";
   };
 
   outputs =
@@ -23,6 +25,7 @@
       home-manager,
       nix-flatpak,
       disko,
+      agenix,
       ...
     }@inputs:
     let
