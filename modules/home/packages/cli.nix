@@ -7,6 +7,7 @@
     samba
     grc # colorizer
     wl-clipboard
+    bitwarden-cli
 
     # Alternatives
     ncdu
