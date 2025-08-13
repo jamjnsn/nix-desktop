@@ -5,6 +5,8 @@
     ./navi
     ./packages
     ./zsh
+
+    ./associations.nix
     ./dev.nix
     ./distrobox.nix
     ./eza.nix
