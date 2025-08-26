@@ -6,6 +6,8 @@
   boot.initrd.systemd.tpm2.enable = true;
 
   boot = {
+    kernelPackages = pkgs.linuxPackages_zen;
+
     loader = {
       timeout = 1;
       efi.canTouchEfiVariables = true;
