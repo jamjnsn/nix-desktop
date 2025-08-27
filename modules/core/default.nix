@@ -11,6 +11,7 @@
     ./networking.nix
     ./nix.nix
     ./ollama.nix
+    ./performance.nix
     ./programs.nix
     ./security.nix
     ./services.nix
