@@ -1,5 +1,7 @@
 { pkgs, ... }:
 {
+  programs.atuin.enable = true; # Shell history
+
   home.packages = with pkgs; [
     # Utils
     htop
