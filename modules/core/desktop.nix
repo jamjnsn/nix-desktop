@@ -5,7 +5,7 @@
   ...
 }:
 {
-  fonts.fontconfig.enable = true; 
+  fonts.fontconfig.enable = true;
 
   xdg.portal = {
     enable = true;
@@ -16,6 +16,12 @@
     };
 
     extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+  };
+
+  qt = {
+    enable = true;
+    platformTheme = "gnome";
+    style = "adwaita-dark";
   };
 
   services.xserver.enable = true;
@@ -29,7 +35,7 @@
     seahorse # Password manager
     gnome-terminal
   ];
-  
+
   environment.systemPackages = with pkgs; [
     gnome-software
   ];
