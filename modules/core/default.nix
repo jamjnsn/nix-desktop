@@ -5,6 +5,7 @@
     ./boot.nix
     ./desktop.nix
     ./disk-config.nix
+    ./docker.nix
     # ./efi-shell.nix # Don't really need this to be always available
     ./flatpak.nix
     ./hardware.nix

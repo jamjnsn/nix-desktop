@@ -20,7 +20,7 @@
     ./mcfly.nix
     ./micro.nix
     ./nix.nix
-    ./podman.nix
+    #./podman.nix
     ./tealdeer.nix
     ./tmux.nix
     ./yt-dlp.nix
