@@ -30,7 +30,7 @@ show_help() {
 
 # Just an alias for now
 cmd_try() {
-    nix-shell -p "$@"
+    nix-shell -p "$@" --command zsh
 }
 
 # Just an alias for now
