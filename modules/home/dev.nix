@@ -21,6 +21,7 @@
     ansible-lint
     just
     openssl
+    gum
   ];
 
   # VScode
