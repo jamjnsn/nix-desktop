@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+COMPOSE_FILE=""
+if [[ -f "compose.yaml" ]]; then
+    COMPOSE_FILE="compose.yaml"
+elif [[ -f "docker-compose.yaml" ]]; then
+    COMPOSE_FILE="docker-compose.yaml"
+elif [[ -f "docker-compose.yml" ]]; then
+    COMPOSE_FILE="docker-compose.yml"
+else
+    echo "No compose file found"
+    exit 1
+fi
+
+services=$(docker compose -f "$COMPOSE_FILE" config --services 2>/dev/null)
+
+if [[ -z "$services" ]]; then
+    echo "No services found in $COMPOSE_FILE"
+    exit 1
+fi
+
+mapfile -t service_array <<< "$services"
+selected_service=$(printf '%s\n' "${service_array[@]}" | gum choose)
+
+if [[ -z "$selected_service" ]]; then
+    echo "No service selected"
+    exit 1
+fi
+
+if ! docker compose -f "$COMPOSE_FILE" ps --services --filter "status=running" | grep -q "^$selected_service$"; then
+    echo "Service '$selected_service' is not running"
+    exit 1
+fi
+
+for shell in bash sh; do
+    if docker compose -f "$COMPOSE_FILE" exec "$selected_service" "$shell"; then
+        exit 0
+    fi
+done
+
+echo "Could not run shell for service '$selected_service'"
+exit 1
