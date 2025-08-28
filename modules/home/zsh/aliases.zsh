@@ -1,5 +1,6 @@
 # Shortcuts
 alias root="sudo -i"
+alias dc="docker compose"
 
 # Default args
 alias mv="mv -iv"
