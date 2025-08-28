@@ -1,4 +1,9 @@
-{ lib, pkgs, ... }:
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
 {
   programs.zsh = {
     enable = true;
@@ -17,23 +22,16 @@
       }
     ];
 
-    sessionVariables = { };
+    # Disable history since I'm using atuin
+    historySubstringSearch.enable = false;
+    history = {
+      size = 0;
+      save = 0;
+      path = "/dev/null";
+    };
 
-    history.size = 10000;
-    history.ignorePatterns = [
-      "rm *"
-      "pkill *"
-      "cp *"
-      "ls *"
-      "cd *"
-      "mv *"
-      "pwd *"
-      "exit *"
-      "ls *"
-    ];
-
-    # Extra config in .zsh files for syntax highlighting
     initContent = lib.concatStringsSep "\n" [
+      # Extra config in .zsh files for syntax highlighting
       (builtins.readFile ./options.zsh)
       (builtins.readFile ./functions.zsh)
       (builtins.readFile ./aliases.zsh)

@@ -22,4 +22,8 @@
     recursive = true;
     executable = true;
   };
+
+  programs.zsh.initContent = lib.concatStringsSep "\n" [
+    "source /run/agenix/env-jamie"
+  ];
 }

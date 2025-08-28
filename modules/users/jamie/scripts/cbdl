@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+atuin search --delete "^cbdl " || true
+
+if [ ! -n "$CBDL_URL" ]; then
+	echo "CBD_URL not defined"
+	exit 1
+fi
+
+if [ ! -n "$CBDL_PATH" ]; then
+	echo "CBD_DEST not defined"
+	exit 1
+fi
+
+if [ ! -d "$CBDL_PATH" ]; then
+	echo "Destination path '$CBDL_PATH' does not exist"
+	exit 1
+fi
+
+yt-dlp -P "$CBDL_PATH" "$CBDL_URL$1"
