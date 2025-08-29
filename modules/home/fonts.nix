@@ -12,6 +12,9 @@
     noto-fonts-cjk-sans
     noto-fonts-emoji
 
+    atkinson-hyperlegible-next
+    atkinson-hyperlegible-mono
+
     liberation_ttf
     cantarell-fonts
 
