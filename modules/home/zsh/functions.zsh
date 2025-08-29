@@ -13,6 +13,12 @@ venv() {
     python3 -m venv .venv && . .venv/bin/activate && python3 -m pip install --upgrade pip &>/dev/null
 }
 
+# Attach to a tmux session (and first create it if it doesn't exist)
+tm() {
+    local session_name="${1:-main}"
+    tmux new-session -A -s "$session_name"
+}
+
 # Take
 function take() {
     if [[ $1 =~ ^(https?|ftp).*\.(tar(\.(gz|bz2?|xz|lz|lzma|Z))?|zip|rar|7z|tgz|tbz2?|txz|tlz)$ ]]; then
