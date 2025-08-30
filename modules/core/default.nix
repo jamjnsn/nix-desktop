@@ -11,7 +11,7 @@
     ./hardware.nix
     ./networking.nix
     ./nix.nix
-    ./ollama.nix
+    # ./ollama.nix # It's not working right anyways
     ./performance.nix
     ./programs.nix
     ./security.nix
