@@ -10,4 +10,5 @@ let
 in
 {
   "secrets/env-jamie.age".publicKeys = users ++ systems;
+  "secrets/samba-mox.age".publicKeys = users ++ systems;
 }

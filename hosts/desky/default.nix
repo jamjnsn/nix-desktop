@@ -10,6 +10,7 @@
     ./hardware-configuration.nix
     ../../modules/core
     # ./vfio.nix
+    ./mounts.nix
     ./nvidia.nix
   ];
 

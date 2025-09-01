@@ -17,6 +17,8 @@
     git
     htop
 
+    cifs-utils # Samba
+
     usbutils
     pciutils
     psmisc # killall and fuser

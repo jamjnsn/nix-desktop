@@ -7,4 +7,10 @@
     mode = "400";
     owner = "jamie";
   };
+
+  age.secrets.samba-mox = {
+    file = ../../secrets/samba-mox.age;
+    mode = "400";
+    owner = "jamie";
+  };
 }
