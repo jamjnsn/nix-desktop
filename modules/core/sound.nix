@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 {
   services.pipewire = {
     enable = true;
@@ -7,4 +7,9 @@
     pulse.enable = true;
     jack.enable = true;
   };
+
+  environment.systemPackages = with pkgs; [
+    helvum
+    easyeffects
+  ];
 }
