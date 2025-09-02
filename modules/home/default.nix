@@ -2,8 +2,11 @@
 {
   imports = [
     ./gnome
+    ./hyprland
     ./navi
     ./packages
+    ./waybar
+    ./wofi
     ./zsh
 
     ./associations.nix

@@ -1,6 +1,8 @@
 { ... }:
 {
   imports = [
+    ./desktops
+
     ./agenix.nix
     ./boot.nix
     ./desktop.nix
