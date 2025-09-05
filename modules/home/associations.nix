@@ -5,7 +5,6 @@ let
   videoPlayer = "io.github.celluloid_player.Celluloid.desktop";
 in
 {
-
   xdg = {
     enable = true;
     mimeApps = {
@@ -46,6 +45,11 @@ in
         "audio/aac" = audioPlayer;
         "audio/mp4" = audioPlayer;
         "audio/x-m4a" = audioPlayer;
+      };
+
+      associations.added = {
+        "x-scheme-handler/sms" = "org.gnome.Shell.Extensions.GSConnect.desktop";
+        "x-scheme-handler/tel" = "org.gnome.Shell.Extensions.GSConnect.desktop";
       };
     };
   };
