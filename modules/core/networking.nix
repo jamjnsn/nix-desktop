@@ -1,6 +1,27 @@
-{ host, ... }:
 {
-  services.tailscale.enable = true;
+  lib,
+  pkgs,
+  host,
+  ...
+}:
+{
+  assertions = [
+    {
+      assertion = pkgs.tailscale.version == "1.82.5";
+      message = ''
+        REMOVE TEMPORARY FIX: Tailscale version has changed from 1.82.5 to ${pkgs.tailscale.version}.
+        The portlist test issue may be fixed. Try removing the doCheck = false override.
+        If tests pass, remove this assertion and the override.
+      '';
+    }
+  ];
+
+  services.tailscale = {
+    enable = true;
+    package = pkgs.tailscale.overrideAttrs (oldAttrs: {
+      doCheck = false; # Temporary fix for portlist tests in 1.82.5 specifically
+    });
+  };
 
   services.avahi = {
     enable = true;
