@@ -5,10 +5,6 @@
   ...
 }:
 {
-  imports = [
-    ../desktops/niri
-  ];
-
   fonts.fontconfig.enable = true;
 
   xdg.portal = {
