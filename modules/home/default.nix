@@ -1,7 +1,7 @@
-{ ... }:
+{ lib, desktop, ... }:
 {
   imports = [
-    ./gnome
+    ./desktops
     ./navi
     ./packages
     ./zsh

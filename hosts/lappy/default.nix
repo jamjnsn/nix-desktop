@@ -11,9 +11,10 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/core
-
-    ../../modules/desktops/niri
   ];
+
+  desktop.gnome.enable = true;
+  desktop.niri.enable = true;
 
   # Graphics
   boot.initrd.kernelModules = [ "i915" ];
