@@ -28,10 +28,6 @@
         swtpm.enable = true;
         ovmf.enable = true;
         ovmf.packages = [ pkgs.OVMFFull.fd ];
-
-        runAsRoot = false;
-        user = "jamie";
-        group = "kvm";
       };
     };
 
