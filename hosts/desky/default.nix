@@ -9,9 +9,9 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/core
-    # ./vfio.nix
+    ./vfio
     ./mounts.nix
-    ./nvidia.nix
+    # ./nvidia.nix
   ];
 
   # Dual boot

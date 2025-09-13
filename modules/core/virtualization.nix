@@ -1,7 +1,10 @@
 { pkgs, ... }:
 {
   # Add user to libvirtd group
-  users.users.jamie.extraGroups = [ "libvirtd" ];
+  users.users.jamie.extraGroups = [
+    "libvirtd"
+    "kvm"
+  ];
 
   # Install necessary packages
   environment.systemPackages = with pkgs; [
@@ -20,14 +23,20 @@
 
     libvirtd = {
       enable = true;
+
       qemu = {
         swtpm.enable = true;
         ovmf.enable = true;
         ovmf.packages = [ pkgs.OVMFFull.fd ];
+
+        runAsRoot = false;
+        user = "jamie";
+        group = "kvm";
       };
     };
 
     spiceUSBRedirection.enable = true;
   };
+
   services.spice-vdagentd.enable = true;
 }
