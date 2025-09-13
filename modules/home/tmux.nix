@@ -13,10 +13,10 @@
       set -g base-index 1
       setw -g pane-base-index 1
 
-      # Set prefix to Alt+a
+      # Set prefix to Ctrl+a
       unbind C-b
-      set-option -g prefix M-a
-      bind-key M-a send-prefix
+      set-option -g prefix C-a
+      bind-key C-a send-prefix
 
       # Pane controls
       bind q kill-pane
