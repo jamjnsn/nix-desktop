@@ -8,6 +8,10 @@
       tabsize = 4;
       softwrap = true;
       ruler = true;
+      scrollbar = true;
+      cursorline = true;
+      clipboard = "terminal";
+      smoothscroll = true;
     };
   };
 
