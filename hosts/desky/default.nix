@@ -9,7 +9,7 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/core
-    ./vfio
+    # ./vfio
     ./mounts.nix
     # ./nvidia.nix
   ];
