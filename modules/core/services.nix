@@ -6,6 +6,7 @@
     locate.enable = true;
     udisks2.enable = true; # For automounting drives
     btrfs.autoScrub.enable = true;
+    udev.enable = true;
 
     fstrim.enable = lib.mkDefault true;
     libinput.enable = true;

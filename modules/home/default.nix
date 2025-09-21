@@ -12,7 +12,6 @@
     ./firefox.nix
     ./fonts.nix
     ./fzf.nix
-    ./gaming.nix
     ./ghostty.nix
     ./gomi.nix
     # ./kitty.nix

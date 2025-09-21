@@ -9,6 +9,7 @@
     ./docker.nix
     # ./efi-shell.nix # Don't really need this to be always available
     ./flatpak.nix
+    ./gaming.nix
     ./hardware.nix
     ./networking.nix
     ./nix.nix
