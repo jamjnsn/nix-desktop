@@ -7,6 +7,7 @@
 
   boot = {
     kernelPackages = pkgs.linuxPackages_zen;
+    supportedFilesystems = [ "nfs" ];
 
     loader = {
       timeout = 1;

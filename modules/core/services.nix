@@ -11,6 +11,7 @@
     fstrim.enable = lib.mkDefault true;
     libinput.enable = true;
     fwupd.enable = true;
+    rpcbind.enable = true; # NFS
 
     openssh = {
       openFirewall = true;
