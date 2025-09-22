@@ -14,15 +14,26 @@ let
         what = source;
         where = mountPoint;
         type = "cifs";
-        options = "credentials=${credentialsFile},uid=1000,gid=100,iocharset=utf8,file_mode=0664,dir_mode=0775,vers=3.0";
+        options = "credentials=${credentialsFile},uid=1000,gid=100,iocharset=utf8,file_mode=0664,dir_mode=0775,vers=3.0,_netdev,x-systemd.device-timeout=10,noauto";
         wantedBy = [ "multi-user.target" ];
+
+        unitConfig = {
+          TimeoutStopSec = "15";
+          Before = [ "network-pre.target" ];
+          After = [ "network.target" ];
+        };
       };
 
       automount = {
         where = mountPoint;
         wantedBy = [ "multi-user.target" ];
+
         automountConfig = {
-          TimeoutIdleSec = "600";
+          TimeoutIdleSec = "300";
+        };
+
+        unitConfig = {
+          TimeoutStopSec = "10";
         };
       };
     };
@@ -30,11 +41,11 @@ let
   # Define your mounts here
   mounts = [
     {
-      source = "//mox/tank";
+      source = "//nyx/tank";
       mountPoint = "/mnt/tank";
     }
     {
-      source = "//mox/dump";
+      source = "//nyx/dump";
       mountPoint = "/mnt/dump";
     }
   ];
