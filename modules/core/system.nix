@@ -23,6 +23,7 @@
     pciutils
     psmisc # killall and fuser
     lsof
+    e2fsprogs
 
     # Archive tools
     zip
