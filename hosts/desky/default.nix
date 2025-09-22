@@ -9,18 +9,18 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/core
-    # ./vfio
+    ./vfio
     ./mounts.nix
     # ./nvidia.nix
   ];
 
-  # Dual boot
   boot.loader.systemd-boot.windows = {
     "windows" = {
       title = "Windows 11";
       efiDeviceHandle = "FS1";
-      sortKey = "z_windows";
+      sortKey = "0_windows";
     };
   };
 
+  desktop.gnome.enable = true;
 }

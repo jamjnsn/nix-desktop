@@ -9,14 +9,18 @@ in
 {
   environment.etc."libvirt/hooks/qemu.d/${vmConfig.name}" = {
     text = ''
-      #!/usr/bin/env bash
+      #!/run/current-system/sw/bin/bash
+
+      LOG_FILE="/tmp/libvirt-hooks.log"
+      echo "[$(date '+%Y-%m-%d %H:%M:%S')] Executing hook with args: $*" | tee -a "$LOG_FILE"
 
       ACTION="$2"
 
       if [ "$ACTION" = "started" ] || [ "$ACTION" = "prepare" ]; then
         echo "Creating shared memory for looking-glass"
 
-        truncate -s 256M /dev/shm/looking-glass
+        # Not needed?
+        # truncate -s 256M /dev/shm/looking-glass
         chown jamie:qemu-libvirtd /dev/shm/looking-glass
         chmod 660 /dev/shm/looking-glass
 

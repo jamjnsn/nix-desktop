@@ -10,7 +10,6 @@
     ./niri
   ];
 
-  # Shared desktop configuration that both GNOME and Plasma can use
   fonts.fontconfig.enable = true;
 
   xdg.portal = {

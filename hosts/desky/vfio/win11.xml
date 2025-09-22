@@ -1,4 +1,3 @@
-<!-- A backup of a working XML file. Keeping it in the repo for now. -->
 <domain type="kvm">
   <name>win11</name>
   <uuid>8a3ef7f2-b63a-4dea-87ca-f4c2a58980ce</uuid>
@@ -86,8 +85,9 @@
   <devices>
     <emulator>/run/libvirt/nix-emulators/qemu-system-x86_64</emulator>
     <disk type="file" device="disk">
-      <driver name="qemu" type="raw" cache="none" io="native" discard="unmap" iothread="1" queues="8"/>
+      <driver name="qemu" type="raw" cache="none" io="native" discard="unmap" iothread="1" queues="4"/>
       <source file="/var/lib/libvirt/images/win11/system.img"/>
+      <backingStore/>
       <target dev="vda" bus="virtio"/>
       <boot order="2"/>
       <address type="pci" domain="0x0000" bus="0x04" slot="0x00" function="0x0"/>
@@ -209,6 +209,12 @@
     </channel>
     <input type="mouse" bus="ps2"/>
     <input type="keyboard" bus="ps2"/>
+    <input type="keyboard" bus="virtio">
+      <address type="pci" domain="0x0000" bus="0x0b" slot="0x00" function="0x0"/>
+    </input>
+    <input type="mouse" bus="virtio">
+      <address type="pci" domain="0x0000" bus="0x0c" slot="0x00" function="0x0"/>
+    </input>
     <tpm model="tpm-crb">
       <backend type="emulator" version="2.0"/>
     </tpm>
@@ -250,8 +256,8 @@
     </hostdev>
     <hostdev mode="subsystem" type="usb" managed="yes">
       <source>
-        <vendor id="0x2dc8"/>
-        <product id="0x3106"/>
+        <vendor id="0x2357"/>
+        <product id="0x0604"/>
       </source>
       <address type="usb" bus="0" port="1"/>
     </hostdev>

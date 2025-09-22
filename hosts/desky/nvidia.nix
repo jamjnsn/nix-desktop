@@ -12,6 +12,8 @@
     "amdgpu"
   ];
 
+  boot.kernelParams = [ "amggpu.modeset=1" ];
+
   hardware.nvidia = {
     modesetting.enable = true; # Required
 
@@ -41,9 +43,9 @@
     package = config.boot.kernelPackages.nvidiaPackages.stable;
 
     prime = {
-      # sync.enable = true;
-      offload.enable = true;
-      offload.enableOffloadCmd = true;
+      sync.enable = true;
+      # offload.enable = true;
+      # offload.enableOffloadCmd = true;
       nvidiaBusId = "PCI:16:0:0";
       amdgpuBusId = "PCI:48:0:0";
     };

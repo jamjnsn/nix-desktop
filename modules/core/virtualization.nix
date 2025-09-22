@@ -29,6 +29,34 @@
         ovmf.enable = true;
         ovmf.packages = [ pkgs.OVMFFull.fd ];
       };
+
+      hooks.qemu = {
+        "libvirtd-hook" = pkgs.writeShellScript "libvirtd-hook" ''
+          #!/run/current-system/sw/bin/bash
+
+          LOG_FILE="/tmp/libvirt-hooks.log"
+          echo "[$(date '+%Y-%m-%d %H:%M:%S')] Executing hook: $*" | tee -a "$LOG_FILE"
+
+          if [ -z "$1" ]; then
+            echo "Error: Name not provided" | tee -a "$LOG_FILE"
+            exit 1
+          fi
+
+          if [ -z "$2" ]; then
+            echo "Error: Hook type not provided" | tee -a "$LOG_FILE"
+            exit 1
+          fi
+
+          DOMAIN_NAME="$1"
+          DOMAIN_HOOK="/etc/libvirt/hooks/qemu.d/$DOMAIN_NAME"
+
+          if [ -x "$DOMAIN_HOOK" ]; then
+              exec "$DOMAIN_HOOK" "$@" 2>&1 | tee -a "$LOG_FILE"
+          else
+              echo "No hook found" | tee -a "$LOG_FILE"
+          fi
+        '';
+      };
     };
 
     spiceUSBRedirection.enable = true;
@@ -37,25 +65,25 @@
   services.spice-vdagentd.enable = true;
 
   # Per-domain drop-in hooks
-  environment.etc."libvirt/hooks/qemu" = {
-    text = ''
-      #!/usr/bin/env bash
+  # environment.etc."libvirt/hooks/qemu" = {
+  #   text = ''
+  #     #!/usr/bin/env bash
 
-      LOG_FILE="/tmp/libvirt-hooks.log"
-      echo "[$(date '+%Y-%m-%d %H:%M:%S')] Executing hook for $DOMAIN_NAME with args: $*" | tee -a "$LOG_FILE"
+  #     LOG_FILE="/tmp/libvirt-hooks.log"
+  #     echo "[$(date '+%Y-%m-%d %H:%M:%S')] Executing hook for $DOMAIN_NAME with args: $*" | tee -a "$LOG_FILE"
 
-      DOMAIN_NAME="$1"
-      DOMAIN_HOOK="/etc/libvirt/hooks/qemu.d/$DOMAIN_NAME"
-      if [ -x "$DOMAIN_HOOK" ]; then
-          exec "$DOMAIN_HOOK" "$@" 2>&1 | tee -a "$LOG_FILE"
-      else
-          echo "No hook found" | tee -a "$LOG_FILE"
-      fi
-    '';
-    mode = "0755";
-  };
+  #     DOMAIN_NAME="$1"
+  #     DOMAIN_HOOK="/etc/libvirt/hooks/qemu.d/$DOMAIN_NAME"
+  #     if [ -x "$DOMAIN_HOOK" ]; then
+  #         exec "$DOMAIN_HOOK" "$@" 2>&1 | tee -a "$LOG_FILE"
+  #     else
+  #         echo "No hook found" | tee -a "$LOG_FILE"
+  #     fi
+  #   '';
+  #   mode = "0755";
+  # };
 
-  systemd.services.libvirtd.restartTriggers = [
-    config.environment.etc."libvirt/hooks/qemu".source
-  ];
+  # systemd.services.libvirtd.restartTriggers = [
+  #   config.environment.etc."libvirt/hooks/qemu".source
+  # ];
 }
