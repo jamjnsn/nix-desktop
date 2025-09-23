@@ -36,7 +36,6 @@
     plymouth = {
       enable = true;
       theme = "bgrt";
-      font = "${pkgs.cantarell-fonts}/share/fonts/cantarell/Cantarell-VF.otf";
       logo = "${pkgs.nixos-icons}/share/icons/hicolor/128x128/apps/nix-snowflake.png";
     };
   };

@@ -30,11 +30,6 @@ in
       name = "WhiteSur-dark";
       package = whitesurIconTheme;
     };
-
-    font = {
-      name = "Cantarell";
-      size = 11;
-    };
   };
 
   xdg.configFile."gtk-4.0/gtk.css".enable = lib.mkForce false;
