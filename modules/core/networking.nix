@@ -33,7 +33,13 @@
     hostId = host.id;
     hostName = host.name;
 
-    networkmanager.enable = true;
+    networkmanager = {
+      enable = true;
+      unmanaged = [
+        "interface-name:br0"
+      ]
+      ++ (map (iface: "interface-name:${iface}") host.bridgeInterfaces);
+    };
 
     bridges = {
       br0 = {
