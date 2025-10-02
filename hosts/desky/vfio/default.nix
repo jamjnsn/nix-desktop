@@ -17,7 +17,7 @@
 
   vmConfig = {
     name = "win11";
-    ramGb = 8;
+    ramGb = 10;
 
     guestCores = [
       4

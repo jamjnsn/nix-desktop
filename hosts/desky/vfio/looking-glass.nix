@@ -4,7 +4,24 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    looking-glass-client
+    (pkgs.looking-glass-client.overrideAttrs (oldAttrs: {
+      postInstall = (oldAttrs.postInstall or "") + ''
+        echo "NoDisplay=true" >> $out/share/applications/looking-glass-client.desktop
+      '';
+    }))
+
+    (pkgs.makeDesktopItem {
+      name = "looking-glass-launcher";
+      desktopName = "Looking Glass";
+      exec = "looking-glass-launcher";
+      icon = "looking-glass";
+      comment = "Low latency KVM framebuffer relay";
+      categories = [
+        "System"
+        "Utility"
+      ];
+    })
+
     (writeShellScriptBin "looking-glass-launch" ''
       #!${pkgs.bash}/bin/bash
 
@@ -25,13 +42,10 @@ in
           
           # Start the domain
           if virsh -c "$CONNECTION" start "$DOMAIN_NAME"; then
-              echo "Domain start command issued successfully."
-              
-              # Wait for domain to be fully running
               echo "Waiting for domain to be ready..."
+              
               for ((i=1; i<=MAX_START_RETRIES; i++)); do
                   if virsh -c "$CONNECTION" list --state-running | grep -q "$DOMAIN_NAME"; then
-                      echo "Domain '$DOMAIN_NAME' is now running!"
                       break
                   fi
                   
@@ -41,41 +55,15 @@ in
                   fi
                   
                   echo "Still waiting... (attempt $i/$MAX_START_RETRIES)"
-                  sleep 1
+                  sleep 3
               done
-              
-              # Give the VM a bit more time to fully boot
-              echo "Giving VM additional time to boot..."
-              sleep 5
-              
           else
               echo "Error: Failed to start domain '$DOMAIN_NAME'"
               exit 1
           fi
       fi
 
-      echo "Attempting to start looking-glass-client..."
-
-      # Try to start looking-glass-client with retries
-      for ((i=1; i<=MAX_LG_RETRIES; i++)); do
-          echo "Starting looking-glass-client (attempt $i/$MAX_LG_RETRIES)..."
-          
-          if looking-glass-client; then
-              echo "looking-glass-client started successfully!"
-              exit 0
-          else
-              echo "looking-glass-client failed to start (exit code: $?)"
-              
-              if [ $i -lt $MAX_LG_RETRIES ]; then
-                  echo "Waiting $LG_RETRY_DELAY seconds before retry..."
-                  sleep $LG_RETRY_DELAY
-              fi
-          fi
-      done
-
-      echo "Error: looking-glass-client failed to start after $MAX_LG_RETRIES attempts."
-      echo "Please check your Looking Glass setup and VM configuration."
-      exit 1
+      looking-glass-client
     '')
   ];
 }
