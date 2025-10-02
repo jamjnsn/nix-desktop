@@ -11,7 +11,6 @@ let
     just-perfection
     paperwm
     pip-on-top # Allows PiP from Firefox to work in Wayland
-    wtmb-window-thumbnails # OnTopReplica
     dash-to-dock
     smile-complementary-extension # For automatic emoji pasting
   ];
