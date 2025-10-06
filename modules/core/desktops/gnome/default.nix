@@ -40,5 +40,19 @@ with lib;
     environment.systemPackages = with pkgs; [
       gnome-software
     ];
+
+    systemd.services.copyGdmMonitorsXml = {
+      description = "Copy monitors.xml to GDM config";
+      after = [
+        "network.target"
+        "systemd-user-sessions.service"
+        "display-manager.service"
+      ];
+      serviceConfig = {
+        ExecStart = "${pkgs.bash}/bin/bash -c 'mkdir -p /run/gdm/.config && cp /home/jamie/.config/monitors.xml /run/gdm/.config/monitors.xml && chown gdm:gdm /run/gdm/.config/monitors.xml'";
+        Type = "oneshot";
+      };
+      wantedBy = [ "multi-user.target" ];
+    };
   };
 }
