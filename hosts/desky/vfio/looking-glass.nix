@@ -22,7 +22,7 @@ in
       ];
     })
 
-    (writeShellScriptBin "looking-glass-launch" ''
+    (writeShellScriptBin "looking-glass-launcher" ''
       #!${pkgs.bash}/bin/bash
 
       # Configuration

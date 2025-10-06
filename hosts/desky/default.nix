@@ -9,9 +9,9 @@
   imports = [
     ./hardware-configuration.nix
     ../../modules/core
-    ./vfio
+    # ./vfio
     ./mounts.nix
-    # ./nvidia.nix
+    ./nvidia.nix
   ];
 
   boot.loader.systemd-boot.windows = {
