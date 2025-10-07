@@ -1,6 +1,7 @@
 { ... }:
 {
   imports = [
+    ./backups
     ./desktops
 
     ./agenix.nix

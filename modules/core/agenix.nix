@@ -13,4 +13,10 @@
     mode = "400";
     owner = "jamie";
   };
+
+  age.secrets.restic-password = {
+    file = ../../secrets/restic-password.age;
+    mode = "400";
+    owner = "jamie";
+  };
 }

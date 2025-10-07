@@ -11,4 +11,5 @@ in
 {
   "secrets/env-jamie.age".publicKeys = users ++ systems;
   "secrets/samba-mox.age".publicKeys = users ++ systems;
+  "secrets/restic-password.age".publicKeys = users ++ systems;
 }

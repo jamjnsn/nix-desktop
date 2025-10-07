@@ -64,4 +64,20 @@
     enable = true;
     powertop.enable = true; # Optimizes other components
   };
+
+  fileSystems."/mnt/backups" = {
+    device = "nyx:/storage/backups/jamie/lappy";
+    fsType = "nfs";
+    options = [
+      "x-systemd.automount"
+      "noauto"
+    ];
+  };
+
+  services.resticBackup = {
+    enable = true;
+    schedule = "hourly";
+  };
+
+  users.users.jamie.backups.enable = true;
 }
