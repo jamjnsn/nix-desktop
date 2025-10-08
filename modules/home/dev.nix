@@ -19,6 +19,7 @@
     python3
     ansible
     ansible-lint
+    nodejs
     just
     openssl
     gum
