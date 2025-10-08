@@ -144,6 +144,22 @@
         "type": "github"
       }
     },
+    "neuwaita": {
+      "flake": false,
+      "locked": {
+        "lastModified": 1750510919,
+        "narHash": "sha256-NL8/ceugdGNSMpa8G/a4Eolutf5BcN6PXiQ9qDmHM1U=",
+        "owner": "RusticBard",
+        "repo": "Neuwaita",
+        "rev": "4c63e30493ab34558539104309282877ab767798",
+        "type": "github"
+      },
+      "original": {
+        "owner": "RusticBard",
+        "repo": "Neuwaita",
+        "type": "github"
+      }
+    },
     "nix-flatpak": {
       "locked": {
         "lastModified": 1754777568,
@@ -245,6 +261,7 @@
         "agenix": "agenix",
         "disko": "disko",
         "home-manager": "home-manager_2",
+        "neuwaita": "neuwaita",
         "nix-flatpak": "nix-flatpak",
         "nixpkgs": "nixpkgs_2",
         "nur": "nur",

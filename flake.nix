@@ -16,6 +16,11 @@
     nur.url = "github:nix-community/NUR";
 
     agenix.url = "github:ryantm/agenix";
+
+    neuwaita = {
+      url = "github:RusticBard/Neuwaita";
+      flake = false;
+    };
   };
 
   outputs =

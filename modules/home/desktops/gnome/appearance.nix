@@ -1,4 +1,9 @@
-{ pkgs, lib, ... }:
+{
+  pkgs,
+  lib,
+  inputs,
+  ...
+}:
 let
   # Use alternative icons (no Finder icon)
   whitesurIconTheme = pkgs.whitesur-icon-theme.override {
@@ -6,6 +11,8 @@ let
   };
 in
 {
+  home.file.".local/share/icons/Neuwaita".source = inputs.neuwaita;
+
   home.packages = with pkgs; [
     adw-gtk3
   ];
@@ -26,9 +33,13 @@ in
       package = pkgs.adw-gtk3;
     };
 
+    # iconTheme = {
+    #   name = "WhiteSur-dark";
+    #   package = whitesurIconTheme;
+    # };
+
     iconTheme = {
-      name = "WhiteSur-dark";
-      package = whitesurIconTheme;
+      name = "Neuwaita";
     };
   };
 
