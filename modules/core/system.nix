@@ -16,6 +16,7 @@
     tree
     git
     htop
+    isd # systemd tui
 
     cifs-utils # Samba
 
