@@ -84,7 +84,7 @@ in
 
             schedule = mkOption {
               type = types.str;
-              default = "daily";
+              default = "hourly";
               description = "When to run the backup (systemd calendar format)";
               example = "hourly";
             };

@@ -76,7 +76,6 @@
 
   services.resticBackup = {
     enable = true;
-    schedule = "hourly";
   };
 
   users.users.jamie.backups.enable = true;
