@@ -19,9 +19,6 @@
       };
     };
 
-    # Set root disk for LUKS
-    initrd.luks.devices.root.device = host.rootDisk;
-
     # Enable "Silent boot"
     consoleLogLevel = 3;
     initrd.verbose = false;
