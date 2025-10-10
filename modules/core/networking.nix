@@ -29,12 +29,22 @@
     openFirewall = true;
   };
 
+  services.resolved = {
+    enable = true;
+    dnssec = "allow-downgrade";
+    fallbackDns = [
+      "9.9.9.9"
+      "149.112.112.112"
+    ];
+  };
+
   networking = {
     hostId = host.id;
     hostName = host.name;
 
     networkmanager = {
       enable = true;
+      dns = "systemd-resolved";
       unmanaged = [
         "interface-name:br0"
       ]
@@ -52,12 +62,6 @@
         useDHCP = true;
       };
     };
-
-    nameservers = [
-      # Quad9
-      "9.9.9.9"
-      "149.112.112.112"
-    ];
 
     # Firewall
     firewall = {
