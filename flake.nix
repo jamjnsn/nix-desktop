@@ -16,7 +16,6 @@
     nur.url = "github:nix-community/NUR";
 
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
 
     agenix.url = "github:ryantm/agenix";
 
@@ -65,6 +64,7 @@
           system = "x86_64-linux";
 
           modules = [
+
             ./hosts/${host.name}
           ];
 
