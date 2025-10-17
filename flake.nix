@@ -15,6 +15,9 @@
 
     nur.url = "github:nix-community/NUR";
 
+    nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+    nixos-hardware.inputs.nixpkgs.follows = "nixpkgs";
+
     agenix.url = "github:ryantm/agenix";
 
     neuwaita = {
@@ -31,6 +34,7 @@
       nix-flatpak,
       disko,
       agenix,
+      nixos-hardware,
       ...
     }@inputs:
     let
