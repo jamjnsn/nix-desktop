@@ -35,10 +35,12 @@ with lib;
       geary # Email client
       seahorse # Password manager
       gnome-terminal
+      gnome-system-monitor # Using Resources instead
     ];
 
     environment.systemPackages = with pkgs; [
       gnome-software
+      resources
     ];
 
     systemd.services.copyGdmMonitorsXml = {
