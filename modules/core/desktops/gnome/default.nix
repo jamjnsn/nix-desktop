@@ -43,7 +43,8 @@ with lib;
       resources
     ];
 
-    systemd.services.copyGdmMonitorsXml = {
+    # Somewhat hacky script to copy monitor config from the primary user so GDM fully respects that monitor configuration.
+    systemd.services.copy-monitors-to-gdm = {
       description = "Copy monitors.xml to GDM config";
       after = [
         "network.target"
@@ -51,7 +52,24 @@ with lib;
         "display-manager.service"
       ];
       serviceConfig = {
-        ExecStart = "${pkgs.bash}/bin/bash -c 'mkdir -p /run/gdm/.config && cp /home/jamie/.config/monitors.xml /run/gdm/.config/monitors.xml && chown gdm:gdm /run/gdm/.config/monitors.xml'";
+        ExecStart = pkgs.writeShellScript "copy-monitors-to-gdm.sh" ''
+          #!${pkgs.bash}/bin/bash
+
+          set -euo pipefail
+
+          monitorsFile="/home/jamie/.config/monitors.xml"
+
+          if ! [ -f "$monitorsFile" ]; then
+            echo "Monitor configuration file not found. Not copying."
+
+            # It's not an error if the file doesn't exist. In a single monitor setup this file doesn't necessarily exist.
+            exit 0
+          fi
+
+          mkdir -p /run/gdm/.config
+          cp /home/jamie/.config/monitors.xml /run/gdm/.config/monitors.xml
+          chown gdm:gdm /run/gdm/.config/monitors.xml
+        '';
         Type = "oneshot";
       };
       wantedBy = [ "multi-user.target" ];
