@@ -66,13 +66,13 @@
                       ];
                     };
 
-                    # "/ollama-models" = {
-                    #   mountpoint = "/var/lib/ollama/models";
-                    #   mountOptions = [
-                    #     "compress=zstd"
-                    #     "noatime"
-                    #   ];
-                    # };
+                    "/ollama" = {
+                      mountpoint = "/var/lib/ollama";
+                      mountOptions = [
+                        "noatime"
+                        "nodatacow"
+                      ];
+                    };
 
                     "/libvirt-images" = {
                       mountpoint = "/var/lib/libvirt/images";

@@ -1,3 +1,12 @@
+# While nix does provide services.ollama, the default configuration doesn't work well with btrfs.
+#
+# We want ollama to have its own subvol so it's excluded from system snapshots, but btrfs creates the
+# subvol with root:root ownership. We can't use a postCreateHook in disko because the ollama user and
+# group will not exist at that point, so we need to ensure ownership some other way. In this case,
+# we make /var/lib/ollama the home for our ollama user, so permissions are handled.
+#
+# The nix-provided service uses a dynamic user, which isn't convenient to work with to ensure the
+# permissions are set on the subvolume, so it's not a great option.
 {
   config,
   lib,
