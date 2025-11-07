@@ -13,7 +13,6 @@
     ./fonts.nix
     ./fzf.nix
     ./ghostty.nix
-    ./gomi.nix
     # ./kitty.nix
     ./mcfly.nix
     ./micro.nix
