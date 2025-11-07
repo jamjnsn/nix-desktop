@@ -52,8 +52,8 @@
         {
           name = "lappy";
           id = "3e7b3b0a";
-          rootDisk = "/dev/disk/by-id/nvme-LENSE30256GMSP34MEAT3TA_1304720404575";
-          bridgeInterfaces = [ "enp0s31f6" ];
+          rootDisk = "/dev/disk/by-id/nvme-WD_BLACK_SN770_1TB_22253F800572";
+          bridgeInterfaces = [ "enp5s0" ];
         }
       ];
 

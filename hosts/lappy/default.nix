@@ -9,7 +9,7 @@
 }:
 {
   imports = [
-    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14s
+    inputs.nixos-hardware.nixosModules.lenovo-thinkpad-t14-amd-gen1
     ./hardware-configuration.nix
     ../../modules/core
   ];
