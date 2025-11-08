@@ -38,6 +38,7 @@
       # Faster rebuild
       builders-use-substitutes = true;
       max-jobs = "auto";
+      cores = 0;
     };
 
     gc = {
