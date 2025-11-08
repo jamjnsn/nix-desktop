@@ -45,22 +45,6 @@
     networkmanager = {
       enable = true;
       dns = "systemd-resolved";
-      unmanaged = [
-        "interface-name:br0"
-      ]
-      ++ (map (iface: "interface-name:${iface}") host.bridgeInterfaces);
-    };
-
-    bridges = {
-      br0 = {
-        interfaces = host.bridgeInterfaces;
-      };
-    };
-
-    interfaces = {
-      br0 = {
-        useDHCP = true;
-      };
     };
 
     # Firewall
